@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.farm.dao.FsMarketinfoMapper">
+  <resultMap id="BaseResultMap" type="com.farm.bean.FsMarketinfo">
+    <id column="marketinfo_id" jdbcType="INTEGER" property="marketinfoId" />
+    <result column="marketinfo_name" jdbcType="VARCHAR" property="marketinfoName" />
+    <result column="marketinfo_address" jdbcType="VARCHAR" property="marketinfoAddress" />
+    <result column="marketinfo_prod_price" jdbcType="VARCHAR" property="marketinfoProdPrice" />
+    <result column="marketinfo_info" jdbcType="VARCHAR" property="marketinfoInfo" />
+    <result column="marketinfo_state" jdbcType="INTEGER" property="marketinfoState" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="effective_time" jdbcType="TIMESTAMP" property="effectiveTime" />
+    <result column="expiration_time" jdbcType="TIMESTAMP" property="expirationTime" />
+    <result column="is_deleted" jdbcType="CHAR" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    marketinfo_id, marketinfo_name, marketinfo_address, marketinfo_prod_price, marketinfo_info, 
+    marketinfo_state, create_time, effective_time, expiration_time, is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fs_marketinfo
+    where marketinfo_id = #{marketinfoId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from fs_marketinfo
+    where marketinfo_id = #{marketinfoId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.farm.bean.FsMarketinfo">
+    insert into fs_marketinfo (marketinfo_id, marketinfo_name, marketinfo_address, 
+      marketinfo_prod_price, marketinfo_info, marketinfo_state, 
+      create_time, effective_time, expiration_time, 
+      is_deleted)
+    values (#{marketinfoId,jdbcType=INTEGER}, #{marketinfoName,jdbcType=VARCHAR}, #{marketinfoAddress,jdbcType=VARCHAR}, 
+      #{marketinfoProdPrice,jdbcType=VARCHAR}, #{marketinfoInfo,jdbcType=VARCHAR}, #{marketinfoState,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{effectiveTime,jdbcType=TIMESTAMP}, #{expirationTime,jdbcType=TIMESTAMP}, 
+      #{isDeleted,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.farm.bean.FsMarketinfo">
+    insert into fs_marketinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="marketinfoId != null">
+        marketinfo_id,
+      </if>
+      <if test="marketinfoName != null">
+        marketinfo_name,
+      </if>
+      <if test="marketinfoAddress != null">
+        marketinfo_address,
+      </if>
+      <if test="marketinfoProdPrice != null">
+        marketinfo_prod_price,
+      </if>
+      <if test="marketinfoInfo != null">
+        marketinfo_info,
+      </if>
+      <if test="marketinfoState != null">
+        marketinfo_state,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="effectiveTime != null">
+        effective_time,
+      </if>
+      <if test="expirationTime != null">
+        expiration_time,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="marketinfoId != null">
+        #{marketinfoId,jdbcType=INTEGER},
+      </if>
+      <if test="marketinfoName != null">
+        #{marketinfoName,jdbcType=VARCHAR},
+      </if>
+      <if test="marketinfoAddress != null">
+        #{marketinfoAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="marketinfoProdPrice != null">
+        #{marketinfoProdPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="marketinfoInfo != null">
+        #{marketinfoInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="marketinfoState != null">
+        #{marketinfoState,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="effectiveTime != null">
+        #{effectiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expirationTime != null">
+        #{expirationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.farm.bean.FsMarketinfo">
+    update fs_marketinfo
+    <set>
+      <if test="marketinfoName != null">
+        marketinfo_name = #{marketinfoName,jdbcType=VARCHAR},
+      </if>
+      <if test="marketinfoAddress != null">
+        marketinfo_address = #{marketinfoAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="marketinfoProdPrice != null">
+        marketinfo_prod_price = #{marketinfoProdPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="marketinfoInfo != null">
+        marketinfo_info = #{marketinfoInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="marketinfoState != null">
+        marketinfo_state = #{marketinfoState,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="effectiveTime != null">
+        effective_time = #{effectiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expirationTime != null">
+        expiration_time = #{expirationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=CHAR},
+      </if>
+    </set>
+    where marketinfo_id = #{marketinfoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.farm.bean.FsMarketinfo">
+    update fs_marketinfo
+    set marketinfo_name = #{marketinfoName,jdbcType=VARCHAR},
+      marketinfo_address = #{marketinfoAddress,jdbcType=VARCHAR},
+      marketinfo_prod_price = #{marketinfoProdPrice,jdbcType=VARCHAR},
+      marketinfo_info = #{marketinfoInfo,jdbcType=VARCHAR},
+      marketinfo_state = #{marketinfoState,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      effective_time = #{effectiveTime,jdbcType=TIMESTAMP},
+      expiration_time = #{expirationTime,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=CHAR}
+    where marketinfo_id = #{marketinfoId,jdbcType=INTEGER}
+  </update>
+
+  <!--查询所有行情信息  前台使用-->
+  <select id="selectAllFsMarketinfo" parameterType="com.farm.bean.FsMarketinfo" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM fs_marketinfo WHERE is_deleted = '0' AND marketinfo_state = '2'
+  </select>
+
+
+  <!--按名字查询所有行情信息 后台使用-->
+  <select id="selectFsMarketinfoByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM fs_marketinfo WHERE is_deleted = '0'
+    AND marketinfo_state = '2'
+    AND marketinfo_name LIKE "%"#{supplyProdCategory,jdbcType=VARCHAR}"%"
+  </select>
+
+
+  <update id="saveFsMarketinfoBProduct">
+--     begin
+--     delete from fs_marketinfo;
+    update fs_marketinfo set  expiration_time = SYSDATE(), marketinfo_state='3' where marketinfo_state = '2';
+    insert INTO fs_marketinfo(marketinfo_name,marketinfo_address,marketinfo_prod_price) select b.category_name as marketinfo_name, a.supply_prod_address as marketinfo_address, a.supply_prod_price as marketinfo_prod_price  FROM (SELECT f.category_id,LEFT ( f.supply_prod_address, 3 ) as supply_prod_address, AVG(f.supply_prod_price) as supply_prod_price FROM fs_supply_products f GROUP BY f.category_id, LEFT ( f.supply_prod_address, 3 )) a left join fs_category b on a.category_id = b.category_seq;
+    update fs_marketinfo set  create_time = SYSDATE(), effective_time = SYSDATE(),marketinfo_state='2' where marketinfo_state = '1';
+--     end;
+  </update>
+
+
+</mapper>

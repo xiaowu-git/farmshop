@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.farm.dao.FsProcurementProductsMapper">
+  <resultMap id="BaseResultMap" type="com.farm.bean.FsProcurementProducts">
+    <id column="procurement_prod_id" jdbcType="INTEGER" property="procurementProdId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="procurement_prod_name" jdbcType="VARCHAR" property="procurementProdName" />
+    <result column="procurement_prod_price" jdbcType="VARCHAR" property="procurementProdPrice" />
+    <result column="procurement_prod_num" jdbcType="VARCHAR" property="procurementProdNum" />
+    <result column="procurement_prod_picture" jdbcType="VARCHAR" property="procurementProdPicture" />
+    <result column="procurement_prod_info" jdbcType="VARCHAR" property="procurementProdInfo" />
+    <result column="category_id" jdbcType="INTEGER" property="categoryId" />
+    <result column="procurement_prod_address" jdbcType="VARCHAR" property="procurementProdAddress" />
+    <result column="procurement_prod_state" jdbcType="INTEGER" property="procurementProdState" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="effective_time" jdbcType="TIMESTAMP" property="effectiveTime" />
+    <result column="expiration_time" jdbcType="TIMESTAMP" property="expirationTime" />
+    <result column="is_deleted" jdbcType="CHAR" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    procurement_prod_id, user_id, procurement_prod_name, procurement_prod_price, procurement_prod_num,
+    procurement_prod_picture, procurement_prod_info, category_id, procurement_prod_address,
+    procurement_prod_state, create_time, effective_time, expiration_time, is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from fs_procurement_products
+    where procurement_prod_id = #{procurementProdId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from fs_procurement_products
+    where procurement_prod_id = #{procurementProdId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.farm.bean.FsProcurementProducts">
+    insert into fs_procurement_products (procurement_prod_id, user_id, procurement_prod_name,
+                                         procurement_prod_price, procurement_prod_num,
+                                         procurement_prod_picture, procurement_prod_info,
+                                         category_id, procurement_prod_address, procurement_prod_state,
+                                         create_time, effective_time, expiration_time,
+                                         is_deleted)
+    values (#{procurementProdId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{procurementProdName,jdbcType=VARCHAR},
+            #{procurementProdPrice,jdbcType=VARCHAR}, #{procurementProdNum,jdbcType=VARCHAR},
+            #{procurementProdPicture,jdbcType=VARCHAR}, #{procurementProdInfo,jdbcType=VARCHAR},
+            #{categoryId,jdbcType=INTEGER}, #{procurementProdAddress,jdbcType=VARCHAR}, #{procurementProdState,jdbcType=INTEGER},
+            #{createTime,jdbcType=TIMESTAMP}, #{effectiveTime,jdbcType=TIMESTAMP}, #{expirationTime,jdbcType=TIMESTAMP},
+            #{isDeleted,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.farm.bean.FsProcurementProducts">
+    insert into fs_procurement_products
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="procurementProdId != null">
+        procurement_prod_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="procurementProdName != null">
+        procurement_prod_name,
+      </if>
+      <if test="procurementProdPrice != null">
+        procurement_prod_price,
+      </if>
+      <if test="procurementProdNum != null">
+        procurement_prod_num,
+      </if>
+      <if test="procurementProdPicture != null">
+        procurement_prod_picture,
+      </if>
+      <if test="procurementProdInfo != null">
+        procurement_prod_info,
+      </if>
+      <if test="categoryId != null">
+        category_id,
+      </if>
+      <if test="procurementProdAddress != null">
+        procurement_prod_address,
+      </if>
+      <if test="procurementProdState != null">
+        procurement_prod_state,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="effectiveTime != null">
+        effective_time,
+      </if>
+      <if test="expirationTime != null">
+        expiration_time,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="procurementProdId != null">
+        #{procurementProdId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="procurementProdName != null">
+        #{procurementProdName,jdbcType=VARCHAR},
+      </if>
+      <if test="procurementProdPrice != null">
+        #{procurementProdPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="procurementProdNum != null">
+        #{procurementProdNum,jdbcType=VARCHAR},
+      </if>
+      <if test="procurementProdPicture != null">
+        #{procurementProdPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="procurementProdInfo != null">
+        #{procurementProdInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="procurementProdAddress != null">
+        #{procurementProdAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="procurementProdState != null">
+        #{procurementProdState,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="effectiveTime != null">
+        #{effectiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expirationTime != null">
+        #{expirationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.farm.bean.FsProcurementProducts">
+    update fs_procurement_products
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="procurementProdName != null">
+        procurement_prod_name = #{procurementProdName,jdbcType=VARCHAR},
+      </if>
+      <if test="procurementProdPrice != null">
+        procurement_prod_price = #{procurementProdPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="procurementProdNum != null">
+        procurement_prod_num = #{procurementProdNum,jdbcType=VARCHAR},
+      </if>
+      <if test="procurementProdPicture != null">
+        procurement_prod_picture = #{procurementProdPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="procurementProdInfo != null">
+        procurement_prod_info = #{procurementProdInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null">
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="procurementProdAddress != null">
+        procurement_prod_address = #{procurementProdAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="procurementProdState != null">
+        procurement_prod_state = #{procurementProdState,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="effectiveTime != null">
+        effective_time = #{effectiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expirationTime != null">
+        expiration_time = #{expirationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=CHAR},
+      </if>
+    </set>
+    where procurement_prod_id = #{procurementProdId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.farm.bean.FsProcurementProducts">
+    update fs_procurement_products
+    set user_id = #{userId,jdbcType=INTEGER},
+        procurement_prod_name = #{procurementProdName,jdbcType=VARCHAR},
+        procurement_prod_price = #{procurementProdPrice,jdbcType=VARCHAR},
+        procurement_prod_num = #{procurementProdNum,jdbcType=VARCHAR},
+        procurement_prod_picture = #{procurementProdPicture,jdbcType=VARCHAR},
+        procurement_prod_info = #{procurementProdInfo,jdbcType=VARCHAR},
+        category_id = #{categoryId,jdbcType=INTEGER},
+        procurement_prod_address = #{procurementProdAddress,jdbcType=VARCHAR},
+        procurement_prod_state = #{procurementProdState,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        effective_time = #{effectiveTime,jdbcType=TIMESTAMP},
+        expiration_time = #{expirationTime,jdbcType=TIMESTAMP},
+        is_deleted = #{isDeleted,jdbcType=CHAR}
+    where procurement_prod_id = #{procurementProdId,jdbcType=INTEGER}
+  </update>
+  <!--查询所有供应商品 前台使用-->
+  <select id="getFsProcurementProducts" parameterType="com.farm.bean.FsProcurementProducts" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM fs_procurement_products WHERE is_deleted = '0'
+    and procurement_prod_state = '2'
+  </select>
+
+  <!--查询所有供应商品 后台使用-->
+  <select id="getAllFsProcurementProducts" parameterType="com.farm.bean.FsProcurementProducts" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM fs_procurement_products WHERE is_deleted = '0'
+  </select>
+
+  <!--根据采购商品名查询商品-->
+  <select id="getFsProcurementProductsByName" parameterType="com.farm.bean.FsProcurementProducts" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from fs_procurement_products
+    where is_deleted = '0'
+    and procurement_prod_name like #{procurementProductsName,jdbcType=VARCHAR}
+  </select>
+
+  <!--根据状态查询 后台使用-->
+  <select id="getFsProcurementByState" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM fs_procurement_products WHERE is_deleted = '0'
+    AND procurement_prod_state = #{procurementProdState,jdbcType=INTEGER}
+  </select>
+
+  <!--根据用户id查询 前台使用-->
+  <select id="getFsProcurementByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM fs_procurement_products WHERE is_deleted = '0'
+    AND user_id = #{userId,jdbcType=INTEGER}
+  </select>
+
+
+</mapper>

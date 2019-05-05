@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.farm.dao.FsAccountMapper">
+  <resultMap id="BaseResultMap" type="com.farm.bean.FsAccount">
+    <id column="account_id" jdbcType="INTEGER" property="accountId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_phone" jdbcType="VARCHAR" property="userPhone" />
+    <result column="account_credit" jdbcType="INTEGER" property="accountCredit" />
+    <result column="account_balance" jdbcType="DECIMAL" property="accountBalance" />
+    <result column="is_deleted" jdbcType="CHAR" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    account_id, user_id, user_phone, account_credit, account_balance, is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fs_account
+    where account_id = #{accountId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from fs_account
+    where account_id = #{accountId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.farm.bean.FsAccount">
+    insert into fs_account (account_id, user_id, user_phone, 
+      account_credit, account_balance, is_deleted
+      )
+    values (#{accountId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{userPhone,jdbcType=VARCHAR}, 
+      #{accountCredit,jdbcType=INTEGER}, #{accountBalance,jdbcType=DECIMAL}, #{isDeleted,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.farm.bean.FsAccount">
+    insert into fs_account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="accountId != null">
+        account_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userPhone != null">
+        user_phone,
+      </if>
+      <if test="accountCredit != null">
+        account_credit,
+      </if>
+      <if test="accountBalance != null">
+        account_balance,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="accountId != null">
+        #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userPhone != null">
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="accountCredit != null">
+        #{accountCredit,jdbcType=INTEGER},
+      </if>
+      <if test="accountBalance != null">
+        #{accountBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.farm.bean.FsAccount">
+    update fs_account
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userPhone != null">
+        user_phone = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="accountCredit != null">
+        account_credit = #{accountCredit,jdbcType=INTEGER},
+      </if>
+      <if test="accountBalance != null">
+        account_balance = #{accountBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=CHAR},
+      </if>
+    </set>
+    where account_id = #{accountId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.farm.bean.FsAccount">
+    update fs_account
+    set user_id = #{userId,jdbcType=INTEGER},
+      user_phone = #{userPhone,jdbcType=VARCHAR},
+      account_credit = #{accountCredit,jdbcType=INTEGER},
+      account_balance = #{accountBalance,jdbcType=DECIMAL},
+      is_deleted = #{isDeleted,jdbcType=CHAR}
+    where account_id = #{accountId,jdbcType=INTEGER}
+  </update>
+</mapper>

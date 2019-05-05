@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.farm.dao.FsStudylistMapper">
+  <resultMap id="BaseResultMap" type="com.farm.bean.FsStudylist">
+    <id column="studylist_id" jdbcType="INTEGER" property="studylistId" />
+    <result column="studylist_name" jdbcType="VARCHAR" property="studylistName" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="studylist_seq" jdbcType="INTEGER" property="studylistSeq" />
+    <result column="studylist_state" jdbcType="INTEGER" property="studylistState" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="studylist_1ogo" jdbcType="VARCHAR" property="studylist1ogo" />
+    <result column="is_deleted" jdbcType="CHAR" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    studylist_id, studylist_name, parent_id, studylist_seq, studylist_state, create_time, 
+    studylist_1ogo, is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fs_studylist
+    where studylist_id = #{studylistId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from fs_studylist
+    where studylist_id = #{studylistId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.farm.bean.FsStudylist">
+    insert into fs_studylist (studylist_id, studylist_name, parent_id, 
+      studylist_seq, studylist_state, create_time, 
+      studylist_1ogo, is_deleted)
+    values (#{studylistId,jdbcType=INTEGER}, #{studylistName,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, 
+      #{studylistSeq,jdbcType=INTEGER}, #{studylistState,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{studylist1ogo,jdbcType=VARCHAR}, #{isDeleted,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.farm.bean.FsStudylist">
+    insert into fs_studylist
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="studylistId != null">
+        studylist_id,
+      </if>
+      <if test="studylistName != null">
+        studylist_name,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="studylistSeq != null">
+        studylist_seq,
+      </if>
+      <if test="studylistState != null">
+        studylist_state,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="studylist1ogo != null">
+        studylist_1ogo,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="studylistId != null">
+        #{studylistId,jdbcType=INTEGER},
+      </if>
+      <if test="studylistName != null">
+        #{studylistName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="studylistSeq != null">
+        #{studylistSeq,jdbcType=INTEGER},
+      </if>
+      <if test="studylistState != null">
+        #{studylistState,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="studylist1ogo != null">
+        #{studylist1ogo,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.farm.bean.FsStudylist">
+    update fs_studylist
+    <set>
+      <if test="studylistName != null">
+        studylist_name = #{studylistName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="studylistSeq != null">
+        studylist_seq = #{studylistSeq,jdbcType=INTEGER},
+      </if>
+      <if test="studylistState != null">
+        studylist_state = #{studylistState,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="studylist1ogo != null">
+        studylist_1ogo = #{studylist1ogo,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=CHAR},
+      </if>
+    </set>
+    where studylist_id = #{studylistId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.farm.bean.FsStudylist">
+    update fs_studylist
+    set studylist_name = #{studylistName,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      studylist_seq = #{studylistSeq,jdbcType=INTEGER},
+      studylist_state = #{studylistState,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      studylist_1ogo = #{studylist1ogo,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=CHAR}
+    where studylist_id = #{studylistId,jdbcType=INTEGER}
+  </update>
+
+  <!--查询所有惠农学堂类别信息  前台使用-->
+  <select id="selectAllFsStudylist" parameterType="com.farm.bean.FsStudylist" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM fs_studylist WHERE is_deleted = '0' AND studylist_state = '1'
+  </select>
+
+  <select id="selectAllChildFsStudylist" parameterType="com.farm.bean.FsStudylist" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM fs_studylist WHERE is_deleted = '0' AND studylist_state = '1' AND parent_id != '0'
+  </select>
+
+
+  <select id="selectStudyListBySeq" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from fs_studylist
+    where studylist_seq = #{studylistSeq,jdbcType=INTEGER} and is_deleted = '0' AND studylist_state = '1'
+  </select>
+
+</mapper>

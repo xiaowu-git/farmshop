@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.farm.dao.FsOrderUserMapper">
+  <resultMap id="BaseResultMap" type="com.farm.bean.FsOrderUser">
+    <id column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="order_number" jdbcType="VARCHAR" property="orderNumber" />
+    <result column="prod_id" jdbcType="INTEGER" property="prodId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_phone" jdbcType="VARCHAR" property="userPhone" />
+    <result column="seller_id" jdbcType="VARCHAR" property="sellerId" />
+    <result column="seller_phone" jdbcType="VARCHAR" property="sellerPhone" />
+    <result column="order_state" jdbcType="CHAR" property="orderState" />
+    <result column="station_start" jdbcType="VARCHAR" property="stationStart" />
+    <result column="station_end" jdbcType="VARCHAR" property="stationEnd" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+    <result column="receive_time" jdbcType="TIMESTAMP" property="receiveTime" />
+    <result column="expiration_time" jdbcType="TIMESTAMP" property="expirationTime" />
+    <result column="order_amount" jdbcType="DECIMAL" property="orderAmount" />
+    <result column="order_remark" jdbcType="VARCHAR" property="orderRemark" />
+    <result column="is_deleted" jdbcType="CHAR" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_id, order_number, prod_id, user_id, user_phone, seller_id, seller_phone, order_state, 
+    station_start, station_end, create_time, pay_time, receive_time, expiration_time, 
+    order_amount, order_remark, is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fs_order_user
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from fs_order_user
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.farm.bean.FsOrderUser">
+    insert into fs_order_user (order_id, order_number, prod_id, 
+      user_id, user_phone, seller_id, 
+      seller_phone, order_state, station_start, 
+      station_end, create_time, pay_time, 
+      receive_time, expiration_time, order_amount, 
+      order_remark, is_deleted)
+    values (#{orderId,jdbcType=INTEGER}, #{orderNumber,jdbcType=VARCHAR}, #{prodId,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER}, #{userPhone,jdbcType=VARCHAR}, #{sellerId,jdbcType=VARCHAR}, 
+      #{sellerPhone,jdbcType=VARCHAR}, #{orderState,jdbcType=CHAR}, #{stationStart,jdbcType=VARCHAR}, 
+      #{stationEnd,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{payTime,jdbcType=TIMESTAMP}, 
+      #{receiveTime,jdbcType=TIMESTAMP}, #{expirationTime,jdbcType=TIMESTAMP}, #{orderAmount,jdbcType=DECIMAL}, 
+      #{orderRemark,jdbcType=VARCHAR}, #{isDeleted,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.farm.bean.FsOrderUser">
+    insert into fs_order_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="orderNumber != null">
+        order_number,
+      </if>
+      <if test="prodId != null">
+        prod_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userPhone != null">
+        user_phone,
+      </if>
+      <if test="sellerId != null">
+        seller_id,
+      </if>
+      <if test="sellerPhone != null">
+        seller_phone,
+      </if>
+      <if test="orderState != null">
+        order_state,
+      </if>
+      <if test="stationStart != null">
+        station_start,
+      </if>
+      <if test="stationEnd != null">
+        station_end,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="payTime != null">
+        pay_time,
+      </if>
+      <if test="receiveTime != null">
+        receive_time,
+      </if>
+      <if test="expirationTime != null">
+        expiration_time,
+      </if>
+      <if test="orderAmount != null">
+        order_amount,
+      </if>
+      <if test="orderRemark != null">
+        order_remark,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNumber != null">
+        #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="prodId != null">
+        #{prodId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userPhone != null">
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerId != null">
+        #{sellerId,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerPhone != null">
+        #{sellerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="orderState != null">
+        #{orderState,jdbcType=CHAR},
+      </if>
+      <if test="stationStart != null">
+        #{stationStart,jdbcType=VARCHAR},
+      </if>
+      <if test="stationEnd != null">
+        #{stationEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null">
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receiveTime != null">
+        #{receiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expirationTime != null">
+        #{expirationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderAmount != null">
+        #{orderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="orderRemark != null">
+        #{orderRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.farm.bean.FsOrderUser">
+    update fs_order_user
+    <set>
+      <if test="orderNumber != null">
+        order_number = #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="prodId != null">
+        prod_id = #{prodId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userPhone != null">
+        user_phone = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerId != null">
+        seller_id = #{sellerId,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerPhone != null">
+        seller_phone = #{sellerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="orderState != null">
+        order_state = #{orderState,jdbcType=CHAR},
+      </if>
+      <if test="stationStart != null">
+        station_start = #{stationStart,jdbcType=VARCHAR},
+      </if>
+      <if test="stationEnd != null">
+        station_end = #{stationEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null">
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receiveTime != null">
+        receive_time = #{receiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expirationTime != null">
+        expiration_time = #{expirationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderAmount != null">
+        order_amount = #{orderAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="orderRemark != null">
+        order_remark = #{orderRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=CHAR},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.farm.bean.FsOrderUser">
+    update fs_order_user
+    set order_number = #{orderNumber,jdbcType=VARCHAR},
+      prod_id = #{prodId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      user_phone = #{userPhone,jdbcType=VARCHAR},
+      seller_id = #{sellerId,jdbcType=VARCHAR},
+      seller_phone = #{sellerPhone,jdbcType=VARCHAR},
+      order_state = #{orderState,jdbcType=CHAR},
+      station_start = #{stationStart,jdbcType=VARCHAR},
+      station_end = #{stationEnd,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      receive_time = #{receiveTime,jdbcType=TIMESTAMP},
+      expiration_time = #{expirationTime,jdbcType=TIMESTAMP},
+      order_amount = #{orderAmount,jdbcType=DECIMAL},
+      order_remark = #{orderRemark,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=CHAR}
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+
+  <!--查询所有订单  前台使用-->
+  <select id="getOrderUser" parameterType="com.farm.bean.FsOrderUser" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM fs_order_user WHERE is_deleted = '0' AND order_state in('2','3','4')
+  </select>
+
+  <!--通过sellerId查询所有订单  前台使用-->
+  <select id="getOrderUserBySeller" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM fs_order_user WHERE is_deleted = '0' AND order_state in('2','3','4') and seller_id = #{sellerId,jdbcType=VARCHAR}
+  </select>
+
+  <!--通过sellerid查询所有订单  前台使用-->
+  <select id="getOrderUserByUser" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM fs_order_user WHERE is_deleted = '0' AND order_state in('2','3','4') and user_id = #{userId,jdbcType=INTEGER}
+  </select>
+
+  <select id="getOrderUserChangeByUser" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM fs_order_user WHERE is_deleted = '0' AND order_state = '5' and user_id = #{userId,jdbcType=INTEGER}
+  </select>
+
+  <!--查询所有的订单，后台使用-->
+  <select id="selectAllOrder" parameterType="com.farm.bean.FsOrderUser" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM fs_order_user WHERE is_deleted = '0' AND order_state in('2','3','4')
+  </select>
+
+
+  <!--通过订单编号查询所有订单  后台使用-->
+  <select id="getFsOrderUserByorderNumber" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM fs_order_user WHERE is_deleted = '0' AND order_state in('2','3','4') and order_number = #{orderNumber,jdbcType=VARCHAR}
+  </select>
+
+
+</mapper>

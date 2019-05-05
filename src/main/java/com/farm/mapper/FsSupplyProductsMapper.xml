@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.farm.dao.FsSupplyProductsMapper">
+  <resultMap id="BaseResultMap" type="com.farm.bean.FsSupplyProducts">
+    <id column="supply_prod_id" jdbcType="INTEGER" property="supplyProdId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="supply_prod_name" jdbcType="VARCHAR" property="supplyProdName" />
+    <result column="supply_prod_price" jdbcType="VARCHAR" property="supplyProdPrice" />
+    <result column="supply_prod_num" jdbcType="VARCHAR" property="supplyProdNum" />
+    <result column="supply_prod_picture" jdbcType="VARCHAR" property="supplyProdPicture" />
+    <result column="supply_prod_info" jdbcType="VARCHAR" property="supplyProdInfo" />
+    <result column="category_id" jdbcType="INTEGER" property="categoryId" />
+    <result column="supply_prod_address" jdbcType="VARCHAR" property="supplyProdAddress" />
+    <result column="supply_prod_state" jdbcType="INTEGER" property="supplyProdState" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="effective_time" jdbcType="TIMESTAMP" property="effectiveTime" />
+    <result column="expiration_time" jdbcType="TIMESTAMP" property="expirationTime" />
+    <result column="is_deleted" jdbcType="CHAR" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    supply_prod_id, user_id, supply_prod_name, supply_prod_price, supply_prod_num, supply_prod_picture,
+    supply_prod_info, category_id, supply_prod_address, supply_prod_state, create_time,
+    effective_time, expiration_time, is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from fs_supply_products
+    where supply_prod_id = #{supplyProdId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from fs_supply_products
+    where supply_prod_id = #{supplyProdId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.farm.bean.FsSupplyProducts">
+    insert into fs_supply_products (supply_prod_id, user_id, supply_prod_name,
+                                    supply_prod_price, supply_prod_num, supply_prod_picture,
+                                    supply_prod_info, category_id, supply_prod_address,
+                                    supply_prod_state, create_time, effective_time,
+                                    expiration_time, is_deleted)
+    values (#{supplyProdId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{supplyProdName,jdbcType=VARCHAR},
+            #{supplyProdPrice,jdbcType=VARCHAR}, #{supplyProdNum,jdbcType=VARCHAR}, #{supplyProdPicture,jdbcType=VARCHAR},
+            #{supplyProdInfo,jdbcType=VARCHAR}, #{categoryId,jdbcType=INTEGER}, #{supplyProdAddress,jdbcType=VARCHAR},
+            #{supplyProdState,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{effectiveTime,jdbcType=TIMESTAMP},
+            #{expirationTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.farm.bean.FsSupplyProducts">
+    insert into fs_supply_products
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="supplyProdId != null">
+        supply_prod_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="supplyProdName != null">
+        supply_prod_name,
+      </if>
+      <if test="supplyProdPrice != null">
+        supply_prod_price,
+      </if>
+      <if test="supplyProdNum != null">
+        supply_prod_num,
+      </if>
+      <if test="supplyProdPicture != null">
+        supply_prod_picture,
+      </if>
+      <if test="supplyProdInfo != null">
+        supply_prod_info,
+      </if>
+      <if test="categoryId != null">
+        category_id,
+      </if>
+      <if test="supplyProdAddress != null">
+        supply_prod_address,
+      </if>
+      <if test="supplyProdState != null">
+        supply_prod_state,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="effectiveTime != null">
+        effective_time,
+      </if>
+      <if test="expirationTime != null">
+        expiration_time,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="supplyProdId != null">
+        #{supplyProdId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="supplyProdName != null">
+        #{supplyProdName,jdbcType=VARCHAR},
+      </if>
+      <if test="supplyProdPrice != null">
+        #{supplyProdPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="supplyProdNum != null">
+        #{supplyProdNum,jdbcType=VARCHAR},
+      </if>
+      <if test="supplyProdPicture != null">
+        #{supplyProdPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="supplyProdInfo != null">
+        #{supplyProdInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="supplyProdAddress != null">
+        #{supplyProdAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="supplyProdState != null">
+        #{supplyProdState,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="effectiveTime != null">
+        #{effectiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expirationTime != null">
+        #{expirationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.farm.bean.FsSupplyProducts">
+    update fs_supply_products
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="supplyProdName != null">
+        supply_prod_name = #{supplyProdName,jdbcType=VARCHAR},
+      </if>
+      <if test="supplyProdPrice != null">
+        supply_prod_price = #{supplyProdPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="supplyProdNum != null">
+        supply_prod_num = #{supplyProdNum,jdbcType=VARCHAR},
+      </if>
+      <if test="supplyProdPicture != null">
+        supply_prod_picture = #{supplyProdPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="supplyProdInfo != null">
+        supply_prod_info = #{supplyProdInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null">
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="supplyProdAddress != null">
+        supply_prod_address = #{supplyProdAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="supplyProdState != null">
+        supply_prod_state = #{supplyProdState,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="effectiveTime != null">
+        effective_time = #{effectiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expirationTime != null">
+        expiration_time = #{expirationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=CHAR},
+      </if>
+    </set>
+    where supply_prod_id = #{supplyProdId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.farm.bean.FsSupplyProducts">
+    update fs_supply_products
+    set user_id = #{userId,jdbcType=INTEGER},
+        supply_prod_name = #{supplyProdName,jdbcType=VARCHAR},
+        supply_prod_price = #{supplyProdPrice,jdbcType=VARCHAR},
+        supply_prod_num = #{supplyProdNum,jdbcType=VARCHAR},
+        supply_prod_picture = #{supplyProdPicture,jdbcType=VARCHAR},
+        supply_prod_info = #{supplyProdInfo,jdbcType=VARCHAR},
+        category_id = #{categoryId,jdbcType=INTEGER},
+        supply_prod_address = #{supplyProdAddress,jdbcType=VARCHAR},
+        supply_prod_state = #{supplyProdState,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        effective_time = #{effectiveTime,jdbcType=TIMESTAMP},
+        expiration_time = #{expirationTime,jdbcType=TIMESTAMP},
+        is_deleted = #{isDeleted,jdbcType=CHAR}
+    where supply_prod_id = #{supplyProdId,jdbcType=INTEGER}
+  </update>
+  <!--查询所有供应商品  前台使用-->
+  <select id="selectAllFsSupplyProducts" parameterType="com.farm.bean.FsSupplyProducts" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM fs_supply_products WHERE is_deleted = '0' AND supply_prod_state = '2'
+  </select>
+
+  <!--查询所有供应商品数量 后台使用-->
+  <select id="selectFsSupplyProductsNum" resultType="Integer">
+    SELECT count(supply_prod_id)
+    FROM fs_supply_products WHERE is_deleted = '0'
+  </select>
+
+  <!--按名字查询所有供应商品 前台使用-->
+  <select id="getFsSupplyProductsByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM fs_supply_products WHERE is_deleted = '0'
+    AND supply_prod_state = '2'
+    AND supply_prod_name LIKE "%"#{supplyProdCategory,jdbcType=VARCHAR}"%"
+  </select>
+
+  <!--根据状态查询 后台使用-->
+  <select id="getFsSupplyProductsByState" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM fs_supply_products WHERE is_deleted = '0'
+    AND supply_prod_state = #{supplyProdState,jdbcType=INTEGER}
+  </select>
+
+  <!--查询所有供应商品  后台使用-->
+  <select id="selectAllFsSupply" parameterType="com.farm.bean.FsSupplyProducts" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM fs_supply_products WHERE is_deleted = '0'
+  </select>
+
+  <!--根据用户id查询 前台使用-->
+  <select id="getFsSupplyProductByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM fs_supply_products WHERE is_deleted = '0'
+    AND user_id = #{userId,jdbcType=INTEGER}
+  </select>
+
+  <!--查询所有供应蔬菜  前台使用-->
+  <select id="selectFsSupplyByVegetables" parameterType="com.farm.bean.FsSupplyProducts" resultMap="BaseResultMap">
+    SELECT
+	t.*
+FROM
+	fs_supply_products t,
+	fs_category c
+WHERE
+	t.is_deleted = '0'
+	AND t.supply_prod_state = '2'
+	AND t.category_id = c.category_seq
+	AND c.parent_id = '1'
+	ORDER BY
+	RAND( ) LIMIT 8
+  </select>
+
+  <!--查询所有供应水果  前台使用-->
+  <select id="selectFsSupplyByFruits" parameterType="com.farm.bean.FsSupplyProducts" resultMap="BaseResultMap">
+    SELECT
+	t.*
+FROM
+	fs_supply_products t,
+	fs_category c
+WHERE
+	t.is_deleted = '0'
+	AND t.supply_prod_state = '2'
+	AND t.category_id = c.category_seq
+	AND c.parent_id = '2'
+	ORDER BY
+	RAND( ) LIMIT 8
+  </select>
+
+
+</mapper>

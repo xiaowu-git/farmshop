@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.farm.dao.FsFarmStudyMapper">
+  <resultMap id="BaseResultMap" type="com.farm.bean.FsFarmStudy">
+    <id column="farmstudy_id" jdbcType="INTEGER" property="farmstudyId" />
+    <result column="admin_id" jdbcType="INTEGER" property="adminId" />
+    <result column="farmstudy_name" jdbcType="VARCHAR" property="farmstudyName" />
+    <result column="studylist_id" jdbcType="INTEGER" property="studylistId" />
+    <result column="farmstudy_title" jdbcType="VARCHAR" property="farmstudyTitle" />
+    <result column="farmstudy_picture" jdbcType="VARCHAR" property="farmstudyPicture" />
+    <result column="farmstudy_info1" jdbcType="VARCHAR" property="farmstudyInfo1" />
+    <result column="farmstudy_info2" jdbcType="VARCHAR" property="farmstudyInfo2" />
+    <result column="farmstudy_state" jdbcType="INTEGER" property="farmstudyState" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="effective_time" jdbcType="TIMESTAMP" property="effectiveTime" />
+    <result column="expiration_time" jdbcType="TIMESTAMP" property="expirationTime" />
+    <result column="is_deleted" jdbcType="CHAR" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    farmstudy_id, admin_id, farmstudy_name, studylist_id, farmstudy_title, farmstudy_picture, 
+    farmstudy_info1, farmstudy_info2, farmstudy_state, create_time, effective_time, expiration_time, 
+    is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fs_farmstudy
+    where farmstudy_id = #{farmstudyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from fs_farmstudy
+    where farmstudy_id = #{farmstudyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.farm.bean.FsFarmStudy">
+    insert into fs_farmstudy (farmstudy_id, admin_id, farmstudy_name, 
+      studylist_id, farmstudy_title, farmstudy_picture, 
+      farmstudy_info1, farmstudy_info2, farmstudy_state, 
+      create_time, effective_time, expiration_time, 
+      is_deleted)
+    values (#{farmstudyId,jdbcType=INTEGER}, #{adminId,jdbcType=INTEGER}, #{farmstudyName,jdbcType=VARCHAR}, 
+      #{studylistId,jdbcType=INTEGER}, #{farmstudyTitle,jdbcType=VARCHAR}, #{farmstudyPicture,jdbcType=VARCHAR}, 
+      #{farmstudyInfo1,jdbcType=VARCHAR}, #{farmstudyInfo2,jdbcType=VARCHAR}, #{farmstudyState,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{effectiveTime,jdbcType=TIMESTAMP}, #{expirationTime,jdbcType=TIMESTAMP}, 
+      #{isDeleted,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.farm.bean.FsFarmStudy">
+    insert into fs_farmstudy
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="farmstudyId != null">
+        farmstudy_id,
+      </if>
+      <if test="adminId != null">
+        admin_id,
+      </if>
+      <if test="farmstudyName != null">
+        farmstudy_name,
+      </if>
+      <if test="studylistId != null">
+        studylist_id,
+      </if>
+      <if test="farmstudyTitle != null">
+        farmstudy_title,
+      </if>
+      <if test="farmstudyPicture != null">
+        farmstudy_picture,
+      </if>
+      <if test="farmstudyInfo1 != null">
+        farmstudy_info1,
+      </if>
+      <if test="farmstudyInfo2 != null">
+        farmstudy_info2,
+      </if>
+      <if test="farmstudyState != null">
+        farmstudy_state,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="effectiveTime != null">
+        effective_time,
+      </if>
+      <if test="expirationTime != null">
+        expiration_time,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="farmstudyId != null">
+        #{farmstudyId,jdbcType=INTEGER},
+      </if>
+      <if test="adminId != null">
+        #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="farmstudyName != null">
+        #{farmstudyName,jdbcType=VARCHAR},
+      </if>
+      <if test="studylistId != null">
+        #{studylistId,jdbcType=INTEGER},
+      </if>
+      <if test="farmstudyTitle != null">
+        #{farmstudyTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="farmstudyPicture != null">
+        #{farmstudyPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="farmstudyInfo1 != null">
+        #{farmstudyInfo1,jdbcType=VARCHAR},
+      </if>
+      <if test="farmstudyInfo2 != null">
+        #{farmstudyInfo2,jdbcType=VARCHAR},
+      </if>
+      <if test="farmstudyState != null">
+        #{farmstudyState,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="effectiveTime != null">
+        #{effectiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expirationTime != null">
+        #{expirationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.farm.bean.FsFarmStudy">
+    update fs_farmstudy
+    <set>
+      <if test="adminId != null">
+        admin_id = #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="farmstudyName != null">
+        farmstudy_name = #{farmstudyName,jdbcType=VARCHAR},
+      </if>
+      <if test="studylistId != null">
+        studylist_id = #{studylistId,jdbcType=INTEGER},
+      </if>
+      <if test="farmstudyTitle != null">
+        farmstudy_title = #{farmstudyTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="farmstudyPicture != null">
+        farmstudy_picture = #{farmstudyPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="farmstudyInfo1 != null">
+        farmstudy_info1 = #{farmstudyInfo1,jdbcType=VARCHAR},
+      </if>
+      <if test="farmstudyInfo2 != null">
+        farmstudy_info2 = #{farmstudyInfo2,jdbcType=VARCHAR},
+      </if>
+      <if test="farmstudyState != null">
+        farmstudy_state = #{farmstudyState,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="effectiveTime != null">
+        effective_time = #{effectiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expirationTime != null">
+        expiration_time = #{expirationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=CHAR},
+      </if>
+    </set>
+    where farmstudy_id = #{farmstudyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.farm.bean.FsFarmStudy">
+    update fs_farmstudy
+    set admin_id = #{adminId,jdbcType=INTEGER},
+      farmstudy_name = #{farmstudyName,jdbcType=VARCHAR},
+      studylist_id = #{studylistId,jdbcType=INTEGER},
+      farmstudy_title = #{farmstudyTitle,jdbcType=VARCHAR},
+      farmstudy_picture = #{farmstudyPicture,jdbcType=VARCHAR},
+      farmstudy_info1 = #{farmstudyInfo1,jdbcType=VARCHAR},
+      farmstudy_info2 = #{farmstudyInfo2,jdbcType=VARCHAR},
+      farmstudy_state = #{farmstudyState,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      effective_time = #{effectiveTime,jdbcType=TIMESTAMP},
+      expiration_time = #{expirationTime,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=CHAR}
+    where farmstudy_id = #{farmstudyId,jdbcType=INTEGER}
+  </update>
+
+  <!--查询所有资讯信息  前台使用-->
+  <select id="selectAllFarmStudy" parameterType="com.farm.bean.FsFarmStudy" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM fs_farmstudy WHERE is_deleted = '0' AND farmstudy_state = '2'
+  </select>
+
+
+  <!--按名字查询所有行情信息 后台使用-->
+  <select id="selectFarmStudyByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM fs_farmstudy WHERE is_deleted = '0'
+    AND farmstudy_state = '2'
+    AND farmstudy_name LIKE "%"#{farmstudyName,jdbcType=VARCHAR}"%"
+  </select>
+</mapper>

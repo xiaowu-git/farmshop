@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.farm.dao.FsRechargeMapper">
+  <resultMap id="BaseResultMap" type="com.farm.bean.FsRecharge">
+    <id column="recharge_id" jdbcType="INTEGER" property="rechargeId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="account_id" jdbcType="INTEGER" property="accountId" />
+    <result column="recharge_amount" jdbcType="DECIMAL" property="rechargeAmount" />
+    <result column="consume_amount" jdbcType="DECIMAL" property="consumeAmount" />
+    <result column="account_balance" jdbcType="DECIMAL" property="accountBalance" />
+    <result column="recharge_time" jdbcType="TIMESTAMP" property="rechargeTime" />
+    <result column="is_deleted" jdbcType="CHAR" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    recharge_id, user_id, account_id, recharge_amount, consume_amount, account_balance, 
+    recharge_time, is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fs_recharge
+    where recharge_id = #{rechargeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from fs_recharge
+    where recharge_id = #{rechargeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.farm.bean.FsRecharge">
+    insert into fs_recharge (recharge_id, user_id, account_id, 
+      recharge_amount, consume_amount, account_balance, 
+      recharge_time, is_deleted)
+    values (#{rechargeId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{accountId,jdbcType=INTEGER}, 
+      #{rechargeAmount,jdbcType=DECIMAL}, #{consumeAmount,jdbcType=DECIMAL}, #{accountBalance,jdbcType=DECIMAL}, 
+      #{rechargeTime,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.farm.bean.FsRecharge">
+    insert into fs_recharge
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rechargeId != null">
+        recharge_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="accountId != null">
+        account_id,
+      </if>
+      <if test="rechargeAmount != null">
+        recharge_amount,
+      </if>
+      <if test="consumeAmount != null">
+        consume_amount,
+      </if>
+      <if test="accountBalance != null">
+        account_balance,
+      </if>
+      <if test="rechargeTime != null">
+        recharge_time,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rechargeId != null">
+        #{rechargeId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="accountId != null">
+        #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="rechargeAmount != null">
+        #{rechargeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="consumeAmount != null">
+        #{consumeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="accountBalance != null">
+        #{accountBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="rechargeTime != null">
+        #{rechargeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.farm.bean.FsRecharge">
+    update fs_recharge
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="accountId != null">
+        account_id = #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="rechargeAmount != null">
+        recharge_amount = #{rechargeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="consumeAmount != null">
+        consume_amount = #{consumeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="accountBalance != null">
+        account_balance = #{accountBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="rechargeTime != null">
+        recharge_time = #{rechargeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=CHAR},
+      </if>
+    </set>
+    where recharge_id = #{rechargeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.farm.bean.FsRecharge">
+    update fs_recharge
+    set user_id = #{userId,jdbcType=INTEGER},
+      account_id = #{accountId,jdbcType=INTEGER},
+      recharge_amount = #{rechargeAmount,jdbcType=DECIMAL},
+      consume_amount = #{consumeAmount,jdbcType=DECIMAL},
+      account_balance = #{accountBalance,jdbcType=DECIMAL},
+      recharge_time = #{rechargeTime,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=CHAR}
+    where recharge_id = #{rechargeId,jdbcType=INTEGER}
+  </update>
+</mapper>

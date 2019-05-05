@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.farm.dao.FsCategoryMapper">
+  <resultMap id="BaseResultMap" type="com.farm.bean.FsCategory">
+    <id column="category_id" jdbcType="INTEGER" property="categoryId" />
+    <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="category_seq" jdbcType="INTEGER" property="categorySeq" />
+    <result column="category_state" jdbcType="INTEGER" property="categoryState" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="category_1ogo" jdbcType="VARCHAR" property="category1ogo" />
+    <result column="is_deleted" jdbcType="CHAR" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    category_id, category_name, parent_id, category_seq, category_state, create_time, 
+    category_1ogo, is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fs_category
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from fs_category
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.farm.bean.FsCategory">
+    insert into fs_category (category_id, category_name, parent_id, 
+      category_seq, category_state, create_time, 
+      category_1ogo, is_deleted)
+    values (#{categoryId,jdbcType=INTEGER}, #{categoryName,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, 
+      #{categorySeq,jdbcType=INTEGER}, #{categoryState,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{category1ogo,jdbcType=VARCHAR}, #{isDeleted,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.farm.bean.FsCategory">
+    insert into fs_category
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="categoryId != null">
+        category_id,
+      </if>
+      <if test="categoryName != null">
+        category_name,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="categorySeq != null">
+        category_seq,
+      </if>
+      <if test="categoryState != null">
+        category_state,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="category1ogo != null">
+        category_1ogo,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="categoryName != null">
+        #{categoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="categorySeq != null">
+        #{categorySeq,jdbcType=INTEGER},
+      </if>
+      <if test="categoryState != null">
+        #{categoryState,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="category1ogo != null">
+        #{category1ogo,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.farm.bean.FsCategory">
+    update fs_category
+    <set>
+      <if test="categoryName != null">
+        category_name = #{categoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="categorySeq != null">
+        category_seq = #{categorySeq,jdbcType=INTEGER},
+      </if>
+      <if test="categoryState != null">
+        category_state = #{categoryState,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="category1ogo != null">
+        category_1ogo = #{category1ogo,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=CHAR},
+      </if>
+    </set>
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.farm.bean.FsCategory">
+    update fs_category
+    set category_name = #{categoryName,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      category_seq = #{categorySeq,jdbcType=INTEGER},
+      category_state = #{categoryState,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      category_1ogo = #{category1ogo,jdbcType=VARCHAR},
+      is_deleted = #{isDeleted,jdbcType=CHAR}
+    where category_id = #{categoryId,jdbcType=INTEGER}
+  </update>
+
+  <!--查询所有产品类别信息  前台使用-->
+  <select id="selectAllFsCategory" parameterType="com.farm.bean.FsCategory" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM fs_category WHERE is_deleted = '0' AND category_state = '1'
+  </select>
+
+  <select id="selectAllChildFsCategory" parameterType="com.farm.bean.FsCategory" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM fs_category WHERE is_deleted = '0' AND category_state = '1' AND parent_id != '0'
+  </select>
+
+
+  <select id="selectFsCategoryBySeq" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from fs_category
+    where category_seq = #{categorySeq,jdbcType=INTEGER}
+    and  is_deleted = '0'
+  </select>
+
+</mapper>
