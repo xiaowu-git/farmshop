@@ -11,7 +11,7 @@
 <html>
 
 <head>
-    <title>farmshop惠农网后台管理</title>
+    <title>助农电商平台后台管理</title>
     <%@include file="admin_head.jsp" %>
     <script src="${pageContext.request.contextPath }/resources/background/js/echarts.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/background/css/amazeui.min.css" />
@@ -33,14 +33,14 @@
             <div class="row">
                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
                     <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span>
-                        "farmshop"控制台主页
+                        助农电商平台后台管理主页
                     </div>
                 </div>
             </div>
         </div>
         <div class="row-content am-cf">
             <div class="row  am-cf">
-                <div class="am-u-sm-12 am-u-md-12 am-u-lg-4">
+                <%--<div class="am-u-sm-12 am-u-md-12 am-u-lg-4">
                     <div class="widget am-cf">
                         <div class="widget-head am-cf">
                             <div class="widget-title am-fl">实时数据信息</div>
@@ -67,8 +67,8 @@
                         </div>
 
                     </div>
-                </div>
-                <div class="am-u-sm-12 am-u-md-6 am-u-lg-4">
+                </div>--%>
+                <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
                     <div class="widget widget-primary am-cf">
                         <div class="widget-statistic-header">
                             当前总用户量
@@ -85,7 +85,7 @@
                         <span class="widget-statistic-icon am-icon-user"></span>
                     </div>
                 </div>
-                <div class="am-u-sm-12 am-u-md-6 am-u-lg-4">
+                <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
                     <div class="widget widget-purple am-cf">
                         <div class="widget-statistic-header">
                             当前商品总量
@@ -104,7 +104,7 @@
                 </div>
 
             </div>
-            <div class="row am-cf">
+            <%--<div class="row am-cf">
                 <div class="am-u-sm-12 am-u-md-8">
                     <div class="widget am-cf">
                         <div class="widget-head am-cf">
@@ -143,7 +143,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>--%>
             </div>
 
 

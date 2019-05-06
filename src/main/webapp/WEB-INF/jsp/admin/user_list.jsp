@@ -54,7 +54,7 @@
                         </div>
                         <div class="am-u-sm-12">
                             <div class="am-scrollable-horizontal ">
-                                <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black" id="example-r">
+                                <table width="100%" class="am-table am-table-compact am-table-hover am-table-bordered am-table-striped tpl-table-black" id="example-r">
                                     <thead>
                                     <tr>
                                         <th>用户编号</th>

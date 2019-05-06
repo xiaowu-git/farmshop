@@ -26,12 +26,12 @@
         </li>
         <li class="sidebar-nav-link">
             <a href="${pageContext.request.contextPath }/admin-member-list-show?page=1" id="user">
-                <i class="am-icon-user sidebar-nav-link-logo"></i> 用  户
+                <i class="am-icon-user sidebar-nav-link-logo"></i> 用 户 管 理
             </a>
         </li>
         <li class="sidebar-nav-link">
             <a href="javascript:;" class="sidebar-nav-sub-title" id="supply">
-                <i class="am-icon-product-hunt sidebar-nav-link-logo"></i> 供  应
+                <i class="am-icon-product-hunt sidebar-nav-link-logo"></i> 供 应 管 理
                 <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
             </a>
             <ul class="sidebar-nav sidebar-nav-sub">
@@ -46,16 +46,16 @@
                     </a>
                 </li>
                 <li class="sidebar-nav-link">
-                    <a href="${pageContext.request.contextPath }/admin-supply-list-show?page=1&state=3" id="supply3">
-                        <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 已下架
-                    </a>
-                </li>
+                <a href="${pageContext.request.contextPath }/admin-supply-list-show?page=1&state=3" id="supply3">
+                    <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 已下架
+                </a>
+            </li>
             </ul>
         </li>
 
         <li class="sidebar-nav-link">
             <a href="javascript:;" class="sidebar-nav-sub-title" id="procurement">
-                <i class="am-icon-product-hunt sidebar-nav-link-logo"></i> 采  购
+                <i class="am-icon-product-hunt sidebar-nav-link-logo"></i> 采 购 管 理
                 <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
             </a>
             <ul class="sidebar-nav sidebar-nav-sub">
@@ -84,22 +84,22 @@
         </li>--%>
         <li class="sidebar-nav-link">
             <a href="${pageContext.request.contextPath }/admin-market-list-show?page=1" id="market">
-                <i class="am-icon-line-chart sidebar-nav-link-logo"></i> 行  情
+                <i class="am-icon-line-chart sidebar-nav-link-logo"></i> 行 情 信 息
             </a>
         </li>
         <li class="sidebar-nav-link">
             <a href="${pageContext.request.contextPath }/admin-farmnews-list-show?page=1" id="farmnews">
-                <i class="am-icon-newspaper-o sidebar-nav-link-logo"></i> 资  讯
+                <i class="am-icon-newspaper-o sidebar-nav-link-logo"></i> 行 业 资 讯
             </a>
         </li>
         <li class="sidebar-nav-link">
             <a href="${pageContext.request.contextPath }/admin-farmstudy-list-show?page=1" id="farmstudy">
-                <i class="am-icon-newspaper-o sidebar-nav-link-logo"></i> 学  堂
+                <i class="am-icon-newspaper-o sidebar-nav-link-logo"></i> 助 农 学 堂
             </a>
         </li>
         <li class="sidebar-nav-link">
             <a href="${pageContext.request.contextPath }/admin-order-list-show?page=1" id="order">
-                <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 订  单
+                <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 订 单 列 表
             </a>
         </li>
         <%--<li class="sidebar-nav-link">
