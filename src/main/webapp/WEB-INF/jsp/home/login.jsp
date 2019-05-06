@@ -38,18 +38,18 @@
                 <form>
                     <div class="user-name">
                         <label for="user"><i class="am-icon-user"></i></label>
-                        <input type="text" name="PhoneNumber" id="user" placeholder="请输入手机号">
+                        <input type="text" name="username" id="user" placeholder="请输入用户名">
                     </div>
                     <div class="user-pass">
                         <label for="password"><i class="am-icon-lock"></i></label>
-                        <input type="password" name="Password" id="password" placeholder="请输入密码">
+                        <input type="password" name="password" id="password" placeholder="请输入密码">
                     </div>
                 </form>
             </div>
 
             <div class="login-links">
-                <label for="remember-me"><input id="remember-me" type="checkbox">记住密码</label>
-                <a href="#" class="am-fr">忘记密码</a>
+                <%--<label for="remember-me"><input id="remember-me" type="checkbox">记住密码</label>--%>
+                <%--<a href="#" class="am-fr">忘记密码</a>--%>
                 <a href="${pageContext.request.contextPath }/register" class="zcnext am-fr am-btn-default">注册</a>
                 <br />
             </div>
@@ -76,12 +76,12 @@
 <script type="text/javascript">
     <!--点击登录按钮后执行登录操作-->
     $("#signininp").click(function () {
-        var userPhone = $('input[name="PhoneNumber"]').val();
-        var userPassword = $('input[name="Password"]').val();
-        if(null == userPhone || "" == userPhone){
+        var username = $('input[name="username"]').val();
+        var userPassword = $('input[name="password"]').val();
+        if(null == username || "" == username){
             toastr.options = {positionClass: "toast-top-center"};
-            toastr["error"]("请输入您的手机号！");
-            $('input[name="Password"]').val("");
+            toastr["error"]("请输入您的用户名！");
+            $('input[name="password"]').val("");
             return false;
         }
         if(null == userPassword || "" == userPassword){
@@ -89,17 +89,17 @@
             toastr["error"]("请输入您的密码！");
             return false;
         }
-        var testPhone = /^[1][3,4,5,7,8][0-9]{9}$/;
+        /*var testPhone = /^[1][3,4,5,7,8][0-9]{9}$/;
         if(!(/^1[3|4|5|6|7|8][0-9]\d{4,8}$/.test(userPhone))){
             toastr.options = {positionClass: "toast-top-center"};
             toastr.warning("请您输入正确的手机号!");
             $('input[name="Password"]').val("");
             return false;
-        }
+        }*/
         if(userPassword.length > 16){
             toastr.options = {positionClass: "toast-top-center"};
             toastr.warning("请您输入小于16位的密码!");
-            $('input[name="Password"]').val("");
+            $('input[name="password"]').val("");
             return false;
         }
         $.ajax({
@@ -107,8 +107,8 @@
             type:'post',
             dataType:'json',
             data:{
-                "userPhone":userPhone,
-                "userPassword":userPassword
+                "username":username,
+                "password":userPassword
             },
             success:function(data){
                 console.log(data);
@@ -119,12 +119,12 @@
                 }else{
                     toastr.options = {positionClass: "toast-top-center"};
                     toastr["error"](data.msg ? data.msg : "登录失败");
-                    $('input[name="Password"]').val("");
+                    $('input[name="password"]').val("");
                 }
             }
             ,error:function(e){
                 toastr["error"]("连接服务器超时，请稍后重试");
-                $('input[name="Password"]').val("");
+                $('input[name="password"]').val("");
             }
         });
     });
@@ -132,12 +132,12 @@
     //回车键登录
     $('input[name="Password"]').keydown(function (e) {
         if(e.keyCode == 13){
-        var userPhone = $('input[name="PhoneNumber"]').val();
-        var userPassword = $('input[name="Password"]').val();
-        if(null == userPhone || "" == userPhone){
+        var username = $('input[name="username"]').val();
+        var userPassword = $('input[name="password"]').val();
+        if(null == username || "" == username){
             toastr.options = {positionClass: "toast-top-center"};
-            toastr["error"]("请输入您的手机号！");
-            $('input[name="Password"]').val("");
+            toastr["error"]("请输入您的用户名！");
+            $('input[name="password"]').val("");
             return false;
         }
         if(null == userPassword || "" == userPassword){
@@ -145,17 +145,17 @@
             toastr["error"]("请输入您的密码！");
             return false;
         }
-        var testPhone = /^[1][3,4,5,7,8][0-9]{9}$/;
+        /*var testPhone = /^[1][3,4,5,7,8][0-9]{9}$/;
         if(!(/^1[3|4|5|6|7|8][0-9]\d{4,8}$/.test(userPhone))){
             toastr.options = {positionClass: "toast-top-center"};
             toastr.warning("请您输入正确的手机号!");
             $('input[name="Password"]').val("");
             return false;
-        }
+        }*/
         if(userPassword.length > 16){
             toastr.options = {positionClass: "toast-top-center"};
             toastr.warning("请您输入小于16位的密码!");
-            $('input[name="Password"]').val("");
+            $('input[name="password"]').val("");
             return false;
         }
         $.ajax({
@@ -163,8 +163,8 @@
             type:'post',
             dataType:'json',
             data:{
-                "userPhone":userPhone,
-                "userPassword":userPassword
+                "username":username,
+                "password":userPassword
             },
             success:function(data){
                 console.log(data);
@@ -175,12 +175,12 @@
                 }else{
                     toastr.options = {positionClass: "toast-top-center"};
                     toastr["error"](data.msg ? data.msg : "登录失败");
-                    $('input[name="Password"]').val("");
+                    $('input[name="password"]').val("");
                 }
             }
             ,error:function(e){
                 toastr["error"]("连接服务器超时，请稍后重试");
-                $('input[name="Password"]').val("");
+                $('input[name="password"]').val("");
             }
         });
         }

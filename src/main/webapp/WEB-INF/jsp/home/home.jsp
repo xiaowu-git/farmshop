@@ -43,7 +43,7 @@
 <div class="shopNav">
     <div class="slideall">
 
-        <div class="long-title"><span class="all-goods">全部分类</span></div>
+        <%--<div class="long-title"><span class="all-goods">全部分类</span></div>--%>
         <div class="nav-cont">
             <ul>
                 <li class="index"><a href="${pageContext.request.contextPath }/home">首页</a></li>
@@ -56,7 +56,7 @@
         </div>
 
         <!--侧边导航 -->
-        <div id="nav" class="navfull">
+        <%--<div id="nav" class="navfull">
             <div class="area clearfix">
                 <div class="category-content" id="guide_2">
 
@@ -72,7 +72,7 @@
                                             <div class="menu-srot">
                                                 <div class="sort-side">
                                                     <dl class="dl-sort">
-                                                        <%--<dt><span title="叶菜类">叶菜类</span></dt>--%>
+                                                        &lt;%&ndash;<dt><span title="叶菜类">叶菜类</span></dt>&ndash;%&gt;
                                                         <c:forEach items="${requestScope.fsCategoryListHome }" var="fsCategory">
                                                             <c:if test="${fsCategory.parentId == 1}">
                                                                 <dd><a title="${fsCategory.categoryName}" href="#"><span>${fsCategory.categoryName}</span></a></dd>
@@ -102,7 +102,7 @@
                                             <div class="menu-srot">
                                                 <div class="sort-side">
                                                     <dl class="dl-sort">
-                                                        <%--<dt><span title="核果仁果类">核果仁果类</span></dt>--%>
+                                                        &lt;%&ndash;<dt><span title="核果仁果类">核果仁果类</span></dt>&ndash;%&gt;
                                                         <c:forEach items="${requestScope.fsCategoryListHome }" var="fsCategory">
                                                             <c:if test="${fsCategory.parentId == 2}">
                                                                 <dd><a title="${fsCategory.categoryName}" href="#"><span>${fsCategory.categoryName}</span></a></dd>
@@ -132,7 +132,7 @@
                                             <div class="menu-srot">
                                                 <div class="sort-side">
                                                     <dl class="dl-sort">
-                                                        <%--<dt><span title="猪肉脯">猪肉脯</span></dt>--%>
+                                                        &lt;%&ndash;<dt><span title="猪肉脯">猪肉脯</span></dt>&ndash;%&gt;
                                                         <c:forEach items="${requestScope.fsCategoryListHome }" var="fsCategory">
                                                             <c:if test="${fsCategory.parentId == 3}">
                                                                 <dd><a title="${fsCategory.categoryName}" href="#"><span>${fsCategory.categoryName}</span></a></dd>
@@ -162,7 +162,7 @@
                                             <div class="menu-srot">
                                                 <div class="sort-side">
                                                     <dl class="dl-sort">
-                                                        <%--<dt><span title="豆干">豆干</span></dt>--%>
+                                                        &lt;%&ndash;<dt><span title="豆干">豆干</span></dt>&ndash;%&gt;
                                                         <c:forEach items="${requestScope.fsCategoryListHome }" var="fsCategory">
                                                             <c:if test="${fsCategory.parentId == 4}">
                                                                 <dd><a title="${fsCategory.categoryName}" href="#"><span>${fsCategory.categoryName}</span></a></dd>
@@ -191,7 +191,7 @@
                                             <div class="menu-srot">
                                                 <div class="sort-side">
                                                     <dl class="dl-sort">
-                                                        <%--<dt><span title="蛋糕">坚果</span></dt>--%>
+                                                        &lt;%&ndash;<dt><span title="蛋糕">坚果</span></dt>&ndash;%&gt;
                                                         <c:forEach items="${requestScope.fsCategoryListHome }" var="fsCategory">
                                                             <c:if test="${fsCategory.parentId == 5}">
                                                                 <dd><a title="${fsCategory.categoryName}" href="#"><span>${fsCategory.categoryName}</span></a></dd>
@@ -222,7 +222,7 @@
                                             <div class="menu-srot">
                                                 <div class="sort-side">
                                                     <dl class="dl-sort">
-                                                        <%--<dt><span title="糖果">糖果</span></dt>--%>
+                                                        &lt;%&ndash;<dt><span title="糖果">糖果</span></dt>&ndash;%&gt;
                                                         <c:forEach items="${requestScope.fsCategoryListHome }" var="fsCategory">
                                                             <c:if test="${fsCategory.parentId == 6}">
                                                                 <dd><a title="${fsCategory.categoryName}" href="#"><span>${fsCategory.categoryName}</span></a></dd>
@@ -249,7 +249,7 @@
                 </div>
 
             </div>
-        </div>
+        </div>--%>
 
 
         <!--轮播-->

@@ -23,4 +23,5 @@ public interface FsUserMapper {
 
     Integer selectUserCount();
 
+    FsUser selectByUserName(String username);
 }

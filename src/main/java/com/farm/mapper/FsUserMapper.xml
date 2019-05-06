@@ -148,6 +148,13 @@
     and user_phone = #{userPhone,jdbcType=VARCHAR}
     </select>
 
+  <select id="selectByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM fs_user
+    WHERE is_deleted = '0'
+    AND user_name = #{username,jdbcType=VARCHAR}
+  </select>
   <!--3.查询所有用户信息-->
   <select id="selectAllFsUser" parameterType="com.farm.bean.FsUser" resultMap="BaseResultMap">
     SELECT

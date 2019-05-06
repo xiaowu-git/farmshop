@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.farm.bean.FsUser;
 import com.farm.exception.BusinessException;
 import com.farm.service.interfaces.IFsUserService;
+import com.farm.utils.JedisClient;
 import com.farm.utils.MD5;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,8 @@ public class UserController {
 
     @Autowired
     private IFsUserService userService;
+    @Autowired
+    private JedisClient jedisClient;
 
     //注册页面显示
     @RequestMapping("/register")
@@ -102,29 +105,28 @@ public class UserController {
     //登录实现
     @ResponseBody
     @RequestMapping(value = "/dologin" , method = RequestMethod.POST)
-    public Object doLogin(@RequestParam("userPhone") String userPhone, @RequestParam("userPassword") String userPassword, HttpSession session) {
+    public Object doLogin(@RequestParam("username") String username, @RequestParam("password") String password, HttpSession session) {
         JSONObject jsonObject = new JSONObject();
         MD5 md5 = new MD5();
-        if(StringUtils.isBlank(userPhone) || StringUtils.isBlank(userPassword)){
+        if(StringUtils.isBlank(username) || StringUtils.isBlank(password)){
             jsonObject.put("msg","缺少参数!");
             jsonObject.put("success",false);
             return jsonObject;
         }
 
         try {
-            List<FsUser> users = userService.selectByUserPhone(userPhone);
-            if(null == users){
-                jsonObject.put("msg","该手机号未注册,请前去注册!");
+            FsUser user = userService.getUserByName(username);
+            if(null == user){
+                jsonObject.put("msg","该用户未注册,请前去注册!");
                 jsonObject.put("success",false);
                 return jsonObject;
-            }else if(null != users && !md5.getMD5ofStr(userPassword).equals(users.get(0).getUserPassword())){
+            }else if(null != user && !md5.getMD5ofStr(password).equals(user.getUserPassword())){
                 jsonObject.put("msg","密码错误,请输入正确密码!");
                 jsonObject.put("success",false);
                 return jsonObject;
             }else{
-                session.setAttribute("obj", users.get(0));
+                session.setAttribute("obj", user);
             }
-
         } catch (BusinessException e) {
             jsonObject.put("msg",e.getMessage());
             return jsonObject;
@@ -230,12 +232,4 @@ public class UserController {
         jsonObject.put("success",true);
         return jsonObject;
     }
-
-
-
-
-
-
-
-
 }

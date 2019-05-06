@@ -10,15 +10,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
-/**
- * Created with IntelliJ IDEA.
- * User: zhongjh
- * Date: 2019/4/13 0013
- * Time: 14:06
- * To change this template use File | Settings | File Templates.
- * Description:
- */
-
 public class FileUtil {
 
     private static Logger log = Logger.getLogger(FileUtil.class);
@@ -77,7 +68,7 @@ public class FileUtil {
         //这里不必处理IO流关闭的问题，因为FileUtils.copyInputStreamToFile()方法内部会自动把用到的IO流关掉，我是看它的源码才知道的
         try {
             //开发环境使用路径
-            realPath = "D:\\workspace\\template\\farmshop\\src\\main\\webapp\\resources\\upload";
+            realPath = "D:\\Program Files (x86)\\IDEA_workplace\\farmshop\\src\\main\\webapp\\resources\\upload";
             FileUtils.copyInputStreamToFile(prodPicture.getInputStream(), new File(realPath, nameNew));
             log.info("========================================");
         } catch (IOException e) {

@@ -43,7 +43,7 @@ public interface IFsUserService {
      * @param username
      * @return
      */
-    FsUser getUserByName(String username);
+    FsUser getUserByName(String username) throws BusinessException;
 
     FsUser getUserById(Integer userId);
 

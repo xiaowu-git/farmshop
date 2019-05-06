@@ -2,6 +2,7 @@ package com.farm.service.impl;
 
 import com.farm.bean.FsUser;
 import com.farm.dao.FsUserMapper;
+import com.farm.exception.BusinessException;
 import com.farm.service.interfaces.IFsUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,8 +39,8 @@ public class FsUserServiceImpl implements IFsUserService {
     }
 
     @Override
-    public FsUser getUserByName(String username) {
-        return null;
+    public FsUser getUserByName(String username) throws BusinessException {
+        return fsUserMapper.selectByUserName(username);
     }
 
     public FsUser getUserById(Integer userId){
