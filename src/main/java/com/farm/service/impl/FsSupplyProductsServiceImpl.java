@@ -45,8 +45,8 @@ public class FsSupplyProductsServiceImpl implements IFsSupplyProductsService {
     }
 
     @Override
-    public List<FsSupplyProducts> getFsSupplyProductsByName(String supplyProdCategory){
-        return fsSupplyProductsMapper.getFsSupplyProductsByName(supplyProdCategory);
+    public List<FsSupplyProducts> getFsSupplyProductsByName(String supplyProdName){
+        return fsSupplyProductsMapper.getFsSupplyProductsByName(supplyProdName);
     }
 
     @Override
@@ -114,6 +114,11 @@ public class FsSupplyProductsServiceImpl implements IFsSupplyProductsService {
     @Override
     public List<FsSupplyProducts> getFsSupplyProductByUserId(Integer userId) {
         return fsSupplyProductsMapper.getFsSupplyProductByUserId(userId);
+    }
+
+    @Override
+    public List<FsSupplyProducts> getFsSupplyProductByCategoryId(Integer categoryId) {
+        return fsSupplyProductsMapper.getFsSupplyProductByCategoryId(categoryId);
     }
 
 

@@ -38,6 +38,9 @@ public class SupplyProdController {
         fsSupplyProducts = fsSupplyProductsService.getFsSupplyProducts();
         requestMap.put("fsSupplyProducts",fsSupplyProducts);
 
+        List<FsCategory> categoryList = fsCategoryService.getAllFsCategory();
+        requestMap.put("categoryList", categoryList);
+
         List<FsSupplyProducts> pageSupplyProds = new ArrayList();
         Map map = pageUtil.getPaging(page, fsSupplyProducts, pageSupplyProds);
 
@@ -85,24 +88,38 @@ public class SupplyProdController {
         return "home/introduction";
     }
 
+    @RequestMapping(value = "/getbycatgoryId", method = RequestMethod.GET)
+    public String getByCatgory(Map<String, Object> requestMap,@RequestParam("categoryId") Integer categoryId, @RequestParam("page") Integer page){
+        List<FsSupplyProducts> fsSupplyProducts = fsSupplyProductsService.getFsSupplyProductByCategoryId(categoryId);
+        List<FsCategory> categoryList = fsCategoryService.getAllFsCategory();
+        requestMap.put("categoryList", categoryList);
 
+        List<FsSupplyProducts> pageSupplyProds = new ArrayList();
+        Map map = pageUtil.getPaging(page, fsSupplyProducts, pageSupplyProds);
+
+        requestMap.put("pageMax", map.get("pageMax"));
+        requestMap.put("pagePoint", map.get("pagePoint"));
+        requestMap.put("pageSupplyProds", map.get("listPage"));
+        return "home/supply";
+    }
 
     //搜索
     @RequestMapping(value = "/search-supplyProd-show",method = RequestMethod.GET)
-    public String getFsSupplyProductsByName (HttpServletRequest request,Map<String, Object> requestMap, @RequestParam("supplyProdCategory") String supplyProdCategory) throws UnsupportedEncodingException {
+    public String getFsSupplyProductsByName (HttpServletRequest request,Map<String, Object> requestMap, @RequestParam("supply_prod_name") String supplyProdName) throws UnsupportedEncodingException {
         //String supplyProdCategoryEncode = new String(supplyProdCategory.getBytes("iso-8859-1"),"utf-8");
-        supplyProdCategory = new String(supplyProdCategory.getBytes("iso-8859-1"),"utf-8");
-        if (StringUtils.isBlank(supplyProdCategory) || supplyProdCategory.length() < 0 || supplyProdCategory.length() > 6) {
-            requestMap.put("msg", "请输入正确的商品名称！");
+        supplyProdName = new String(supplyProdName.getBytes("iso-8859-1"),"utf-8");
+        System.out.println("--------------------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + supplyProdName);
+        if (StringUtils.isBlank(supplyProdName) || supplyProdName.length() < 0 || supplyProdName.length() > 6) {
+            requestMap.put("msg", "请输入正确的农产品名称！");
             requestMap.put("success", false);
             return "home/supply";
         } else {
-            List<FsSupplyProducts> fsSupplyProducts = fsSupplyProductsService.getFsSupplyProductsByName(supplyProdCategory);
+            List<FsSupplyProducts> fsSupplyProducts = fsSupplyProductsService.getFsSupplyProductsByName(supplyProdName);
             requestMap.put("fsSupplyProducts", fsSupplyProducts);
-
+            System.out.println( "结果长度： -------------------------》" + fsSupplyProducts.size());
             List<FsSupplyProducts> pageSupplyProds = new ArrayList();
             Map map = pageUtil.getPaging(1, fsSupplyProducts, pageSupplyProds);
-
+            requestMap.put("supplyProdName", supplyProdName);
             requestMap.put("pageMax", map.get("pageMax"));
             requestMap.put("pagePoint", map.get("pagePoint"));
             requestMap.put("pageSupplyProds", map.get("listPage"));

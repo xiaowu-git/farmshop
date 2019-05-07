@@ -20,7 +20,7 @@ public interface FsSupplyProductsMapper {
 
     Integer selectFsSupplyProductsNum();
 
-    List<FsSupplyProducts> getFsSupplyProductsByName(String supplyProdCategory);
+    List<FsSupplyProducts> getFsSupplyProductsByName(String supplyProdName);
 
     List<FsSupplyProducts> getFsSupplyProductsByState(Integer supplyProdState);
 
@@ -32,4 +32,5 @@ public interface FsSupplyProductsMapper {
 
     List<FsSupplyProducts>  selectFsSupplyByVegetables();
 
+    List<FsSupplyProducts> getFsSupplyProductByCategoryId(Integer categoryId);
 }

@@ -48,7 +48,7 @@
 
                 <div class="search-bar pr">
                     <form action="${pageContext.request.contextPath }/search-supplyProd-show" method="get">
-                        <input id="searchInput" name="supplyProdCategory" type="text" placeholder="搜索" autocomplete="off">
+                        <input id="searchInput" name="supply_prod_name" value="${requestScope.supplyProdName}" type="text" placeholder="搜索" autocomplete="off">
                         <input id="ai-topsearch" class="submit am-btn"  value="搜索" index="1" type="submit">
                     </form>
                 </div>

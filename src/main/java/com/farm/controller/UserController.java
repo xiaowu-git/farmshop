@@ -72,26 +72,26 @@ public class UserController {
         JSONObject jsonObject = new JSONObject();
         MD5 md5 = new MD5();
         if(StringUtils.isBlank(userPhone) || StringUtils.isBlank(userName) || StringUtils.isBlank(userPassword)){
-            jsonObject.put("msg","添加失败!");
+            jsonObject.put("msg","注册失败!");
             jsonObject.put("success",false);
             return jsonObject;
         }
 
         try {
-            List<FsUser> users = userService.selectByUserPhone(userPhone);
-            if(null != users && users.size() > 0) {
-                jsonObject.put("msg","该手机号已经注册啦!");
+            FsUser users = userService.getUserByName(userName);
+            if(null != users) {
+                jsonObject.put("msg","该用户已经注册啦!");
                 jsonObject.put("success",false);
                 return jsonObject;
             }
             //加密
             boolean flag= userService.register(userPhone,userName,md5.getMD5ofStr(userPassword));
             if(flag) {
-                jsonObject.put("msg","添加成功!");
+                jsonObject.put("msg","注册成功!");
                 jsonObject.put("success",true);
                 return jsonObject;
             } else {
-                jsonObject.put("msg","添加失败!");
+                jsonObject.put("msg","注册失败!");
                 jsonObject.put("success",false);
                 return jsonObject;
             }
@@ -225,7 +225,7 @@ public class UserController {
                     return jsonObject;
                 }
             }
-        } catch (Exception e) {
+        } catch (BusinessException e) {
             jsonObject.put("msg",e.getMessage());
             return jsonObject;
         }

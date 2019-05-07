@@ -36,7 +36,7 @@ public interface IFsSupplyProductsService {
      * 4.按名字搜索供应商品
      * @return
      */
-    List<FsSupplyProducts> getFsSupplyProductsByName(String supplyProdCategory);
+    List<FsSupplyProducts> getFsSupplyProductsByName(String supplyProdName);
 
     /**
      * 5.更改供应商品信息
@@ -70,5 +70,5 @@ public interface IFsSupplyProductsService {
 
     List<FsSupplyProducts> getFsSupplyProductByUserId(Integer userId);
 
-
+    List<FsSupplyProducts> getFsSupplyProductByCategoryId(Integer categoryId);
 }

@@ -216,7 +216,15 @@
     <include refid="Base_Column_List" />
     FROM fs_supply_products WHERE is_deleted = '0'
     AND supply_prod_state = '2'
-    AND supply_prod_name LIKE "%"#{supplyProdCategory,jdbcType=VARCHAR}"%"
+    AND supply_prod_name LIKE CONCAT('%',#{supplyProdName},'%')
+  </select>
+  <!--按类别查询所有供应商品 前台使用-->
+  <select id="getFsSupplyProductByCategoryId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM fs_supply_products WHERE is_deleted = '0'
+    AND supply_prod_state = '2'
+    AND category_id = #{categoryId}
   </select>
 
   <!--根据状态查询 后台使用-->

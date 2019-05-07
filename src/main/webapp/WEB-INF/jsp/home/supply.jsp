@@ -36,21 +36,24 @@
                 <div class="theme-popover">
                     <ul class="select">
                         <div class="clear"></div>
-                        <li class="select-result">
-                            <dl>
-                                <dt>已选</dt>
-                                <dd class="select-no"></dd>
-                                <p class="eliminateCriteria">清除</p>
-                            </dl>
-                        </li>
+                        <%--<li class="select-result">--%>
+                            <%--<dl>--%>
+                                <%--<dt>已选</dt>--%>
+                                <%--<dd class="select-no"></dd>--%>
+                                <%--<p class="eliminateCriteria">清除</p>--%>
+                            <%--</dl>--%>
+                        <%--</li>--%>
                         <div class="clear"></div>
                         <li class="select-list">
                             <dl id="select2">
                                 <dt class="am-badge am-round">种类</dt>
                                 <div class="dd-conent">
-                                    <dd class="select-all selected"><a href="#">全部</a></dd>
-                                    <dd><a href="#">蔬菜</a></dd>
-                                    <dd><a href="#">水果</a></dd>
+                                    <dd class="select-all selected"><a href="${pageContext.request.contextPath }/supply-list?page=1">全部</a></dd>
+                                    <c:forEach items="${requestScope.categoryList }" var="category">
+                                        <dd><a href="${pageContext.request.contextPath}/getbycatgoryId?categoryId=${category.categoryId}&page=1">${category.categoryName }</a></dd>
+                                    </c:forEach>
+                                    <%--<dd><a href="#">蔬菜</a></dd>--%>
+                                    <%--<dd><a href="#">水果</a></dd>--%>
                                 </div>
                             </dl>
                         </li>

@@ -24,19 +24,19 @@
 
             <div class="am-tabs" id="doc-my-tabs">
                 <ul class="am-tabs-nav am-nav am-nav-tabs am-nav-justify">
-                    <li><a href="">手机号注册</a></li>
+                    <li><a href="">用户注册</a></li>
                 </ul>
 
                 <div class="am-tabs-bd">
                     <div class="am-tab-panel">
                         <form method="post">
+                            <div class="user-name">
+                                <label for="username"><i class="am-icon-code-fork"></i></label>
+                                <input type="text" name="YourName" id="username" placeholder="请输入用户名">
+                            </div>
                             <div class="user-phone">
                                 <label for="phone"><i class="am-icon-mobile-phone am-icon-md"></i></label>
                                 <input type="tel" name="PhoneNumber" id="phone" placeholder="请输入手机号">
-                            </div>
-                            <div class="user-name">
-                                <label for="username"><i class="am-icon-code-fork"></i></label>
-                                <input type="text" name="YourName" id="username" placeholder="请填写真实姓名">
                             </div>
                             <div class="user-pass">
                                 <label for="password"><i class="am-icon-lock"></i></label>
@@ -90,12 +90,14 @@
 			toastr.options = {positionClass: "toast-top-center"};
 			toastr["error"]("请输入您的手机号！");
 			$('input[name="Password"]').val("");
+			$('input[name="Password1"]').val("");
 			return false;
 		}
 		if(null == userName || "" == userName){
 			toastr.options = {positionClass: "toast-top-center"};
-			toastr["error"]("请输入您的真实姓名！");
+			toastr["error"]("请输入用户名！");
 			$('input[name="Password"]').val("");
+			$('input[name="Password1"]').val("");
 			return false;
 		}
 		if(null == userPassword || "" == userPassword){
@@ -108,24 +110,28 @@
 			toastr.options = {positionClass: "toast-top-center"};
 			toastr.warning("请您输入正确的手机号!");
 			$('input[name="Password"]').val("");
+			$('input[name="Password1"]').val("");
 			return false;
 		 }
 		if(userName.length > 10){
 			toastr.options = {positionClass: "toast-top-center"};
-			toastr.warning("姓名过长，请您输入不超过10个汉字的姓名!");
+			toastr.warning("用户名过长，请您输入不超过10个汉字的用户名!");
 			$('input[name="Password"]').val("");
+			$('input[name="Password1"]').val("");
 			return false;
 		}
 		if(userPassword.length > 16){
 			toastr.options = {positionClass: "toast-top-center"};
 			toastr.warning("请您输入小于16位的密码!");
 			$('input[name="Password"]').val("");
+			$('input[name="Password1"]').val("");
 			return false;
 		}
 		if(userPassword != userPassword1){
 			toastr.options = {positionClass: "toast-top-center"};
 			toastr["error"]("两次输入密码不一致，请确认！");
 			$('input[name="Password"]').val("");
+			$('input[name="Password1"]').val("");
 			return false;
 		}
 		$.ajax({
@@ -146,11 +152,13 @@
 					toastr.options = {positionClass: "toast-top-center"};
 					toastr["error"](data.msg ? data.msg : "注册失败");
 					$('input[name="Password"]').val("");
+					$('input[name="Password1"]').val("");
 				}
 			}
 			,error:function(e){
 				toastr["error"]("连接服务器超时，请稍后重试");
 				$('input[name="Password"]').val("");
+				$('input[name="Password1"]').val("");
 			}
 		});
 	});

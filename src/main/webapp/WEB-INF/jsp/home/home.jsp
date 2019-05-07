@@ -300,12 +300,12 @@
         <!--走马灯 -->
 
         <div class="marqueen">
-            <span class="marqueen-title">惠农头条</span>
+            <span class="marqueen-title">助农头条</span>
             <div class="demo">
 
                 <ul>
                     <c:forEach items="${requestScope.fsFarmnewsListHome }" var="fsFarmnews">
-                        <li><a target="_blank" href=""><span>[头条]</span>${fsFarmnews.farmnewsName}</a></li>
+                        <li><a href="${pageContext.request.contextPath }/user-farmnews-show?farmnewsId=${fsFarmnews.farmnewsId}"><span>[头条]</span>${fsFarmnews.farmnewsName}</a></li>
                     </c:forEach>
                     <%--<li class="title-first">
                         <a target="_blank" href="#">
