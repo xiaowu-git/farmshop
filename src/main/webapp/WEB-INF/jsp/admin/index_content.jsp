@@ -185,7 +185,13 @@
                                     <c:forEach items="${requestScope.fsFarmnewsListIndex }" var="news">
                                         <tr class="gradeX">
                                             <td>${news.farmnewsTitle }</td>
-                                            <td>${news.userId }</td>
+                                            <td>
+                                                <c:forEach items="${adminList}" var="admin">
+                                                    <c:if test="${admin.adminId == news.userId}">
+                                                        ${admin.adminName}
+                                                    </c:if>
+                                                </c:forEach>
+                                            </td>
                                             <td><fmt:formatDate value="${news.effectiveTime}" type="both"/></td>
                                             <td>
                                                 <div class="tpl-table-black-operation">

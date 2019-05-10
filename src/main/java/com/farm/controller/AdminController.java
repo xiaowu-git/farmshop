@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -61,6 +62,11 @@ public class AdminController {
     @RequestMapping(value = "admin-admin-searchadmin-show", method = RequestMethod.GET)
     public String searchAdminShow(Map<String, Object> requestMap, @RequestParam("name") String name) {
         requestMap.put("nav", "admin-list");
+        try {
+            name = new String(name.getBytes("ISO-8859-1"), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         ArrayList<FsAdmin> admins = (ArrayList<FsAdmin>) fsAdminService.getFsAdminByNameLike(name);
         requestMap.put("pageAdmins", admins);
         return "admin/admin_list";

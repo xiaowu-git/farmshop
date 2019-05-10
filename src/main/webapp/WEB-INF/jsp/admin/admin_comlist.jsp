@@ -14,13 +14,13 @@
               <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
               ${sessionScope.admin.adminName }
           </span>
-            <a href="${pageContext.request.contextPath }/admin-index-edit-show" class="tpl-user-panel-action-link"> <span class="am-icon-pencil"></span> 账号设置</a>
+            <a href="${pageContext.request.contextPath }/admin-index-edit-show?adminId=${sessionScope.admin.adminId}" class="tpl-user-panel-action-link"> <span class="am-icon-pencil"></span> 账号设置</a>
         </div>
     </div>
     <!-- 菜单 -->
     <ul class="sidebar-nav">
         <li class="sidebar-nav-link">
-            <a href="${pageContext.request.contextPath }/admin-index-index-show" id="index">
+            <a href="${pageContext.request.contextPath }/admin-index-show" id="index">
                 <i class="am-icon-home sidebar-nav-link-logo"></i> 首  页
             </a>
         </li>
@@ -42,12 +42,12 @@
                 </li>
                 <li class="sidebar-nav-link">
                     <a href="${pageContext.request.contextPath }/admin-supply-list-show?page=1&state=2" id="supply2">
-                        <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 已审核
+                        <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 已审核通过
                     </a>
                 </li>
                 <li class="sidebar-nav-link">
                 <a href="${pageContext.request.contextPath }/admin-supply-list-show?page=1&state=3" id="supply3">
-                    <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 已下架
+                    <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 审核不通过
                 </a>
             </li>
             </ul>
@@ -66,12 +66,12 @@
                 </li>
                 <li class="sidebar-nav-link">
                     <a href="${pageContext.request.contextPath }/admin-procurement-list-show?page=1&state=2" id="procurement2">
-                        <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 已审核
+                        <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 已审核通过
                     </a>
                 </li>
                 <li class="sidebar-nav-link">
                     <a href="${pageContext.request.contextPath }/admin-procurement-list-show?page=1&state=3" id="procurement3">
-                        <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 已下架
+                        <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 审核不通过
                     </a>
                 </li>
             </ul>

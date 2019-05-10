@@ -33,12 +33,13 @@
                                 <div class="am-form-group tpl-table-list-select">
                                 </div>
                             </div>
-                            <!--按用户名(手机号)搜索-->
+                            <!--按用户名搜索-->
                             <div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
                                 <form action="${pageContext.request.contextPath }/admin-admin-searchadmin-show"
                                       method="get">
+
                                     <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
-                                        <input type="text" class="am-form-field" name="name">
+                                        <input type="text" class="am-form-field" name="name" placeholder="请输入管理员名字">
                                         <span class="am-input-group-btn">
             								<button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search"
                                                     type="submit"></button>
@@ -69,10 +70,10 @@
                                                 <%--<td class="am-text-middle">${admin. }</td>--%>
                                             <td class="am-text-middle">
                                                 <div class="tpl-table-black-operation">
-                                                    <a href="admin-admin-editadmin-show/${admin.adminId }">
+                                                    <a href="${pageContext.request.contextPath}/admin-index-edit-show?adminId=${admin.adminId }">
                                                         <i class="am-icon-pencil"></i> 编辑
                                                     </a>
-                                                    <a href="admin-admin-removeadmin-execute/${admin.adminId }"
+                                                    <a href="${pageContext.request.contextPath}/admin-admin-removeadmin-execute/${admin.adminId }"
                                                        class="tpl-table-black-operation-del">
                                                         <i class="am-icon-trash"></i> 删除
                                                     </a>

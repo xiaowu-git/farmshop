@@ -112,4 +112,9 @@ public class FsUserServiceImpl implements IFsUserService {
         int updateNum = fsUserMapper.updateByPrimaryKey(fsUser);
         return updateNum;
     }
+
+    @Override
+    public List<FsUser> findUserByName(String username) {
+        return fsUserMapper.selectUsersByName(username);
+    }
 }

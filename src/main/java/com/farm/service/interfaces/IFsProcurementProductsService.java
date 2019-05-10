@@ -52,6 +52,5 @@ public interface IFsProcurementProductsService {
     List<FsProcurementProducts> getFsProcurementByUserId(Integer userId);
 
 
-
-
+    List<FsProcurementProducts> getBycategoryId(Integer categoryId);
 }

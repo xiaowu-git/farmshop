@@ -37,7 +37,7 @@
                     <button type="submit" class="am-btn am-btn-primary  am-btn-block tpl-btn-bg-color-success  tpl-login-btn">提交</button>
                 </div>
                 <div class="am-form-group" style="text-align: center;">
-                    <a href="admin-index-index-show" style="color: #666; font-size: 14px;">返回控制台</a>
+                    <a href="admin-index-show" style="color: #666; font-size: 14px;">返回控制台</a>
                 </div>
             </form>
         </div>

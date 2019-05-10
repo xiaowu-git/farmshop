@@ -37,7 +37,7 @@
                                     <label for="farmstudy-name" class="am-u-sm-3 am-form-label">标题 <span class="tpl-form-line-small-title">Title</span></label>
                                     <div class="am-u-sm-9">
                                         <input id="farmstudy-name" type="text" class="tpl-form-input" placeholder="请输入标题文字">
-                                        <small>请填写标题文字5-10字左右。</small>
+                                        <small>请输入标题</small>
                                     </div>
                                 </div>
 
@@ -147,7 +147,7 @@
                 if(data) {
                     $("#farmstudy-type").append("<option value=''>请选择</option>");
                     for(var i=0;i<data.length;i++) {
-                        $("#farmstudy-type").append("<option value='"+data[i].studylistSeq+"'>"+data[i].studylistName+"</option>");
+                        $("#farmstudy-type").append("<option value='"+data[i].studylistId+"'>"+data[i].studylistName+"</option>");
                     }
                 }
                 else {
@@ -229,7 +229,7 @@
             toastr["error"]("请填写行业资讯的标题！");
             return false;
         }
-        if(farmstudyName.length > 10){
+        if(farmstudyName.length > 30){
             toastr.options = {positionClass: "toast-top-right"};
             toastr.warning("请您正确填写行业资讯的标题!");
             return false;
@@ -244,7 +244,7 @@
             toastr.warning("请您正确填写行业资讯的具体内容!");
             return false;
         }
-        if(farmstudyInfo.length > 1000){
+        if(farmstudyInfo.length > 5000){
             toastr.options = {positionClass: "toast-top-right"};
             toastr.warning("您填写行业资讯的具体内容已经超出字数!");
             return false;

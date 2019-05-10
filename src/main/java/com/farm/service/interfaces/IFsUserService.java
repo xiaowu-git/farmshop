@@ -78,6 +78,5 @@ public interface IFsUserService {
     int updateByPrimaryKey(FsUser fsUser);
 
 
-
-
+    List<FsUser> findUserByName(String username);
 }

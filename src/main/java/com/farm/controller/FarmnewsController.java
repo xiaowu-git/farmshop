@@ -1,6 +1,8 @@
 package com.farm.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.farm.bean.FsAdmin;
+import com.farm.bean.FsCategory;
 import com.farm.bean.FsFarmnews;
 import com.farm.service.interfaces.IFsAdminService;
 import com.farm.service.interfaces.IFsCategoryService;
@@ -10,6 +12,7 @@ import com.farm.utils.PageUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -68,6 +71,8 @@ public class FarmnewsController {
     public String adminFarmnewsList (HttpServletRequest request,Map<String, Object> requestMap,@RequestParam("page") Integer page){
         requestMap.put("nav", "farmnews");
         List<FsFarmnews> fsFarmnews = fsFarmnewsService.getAllFsFarmnews();
+        List<FsAdmin> adminList = fsAdminService.getAllFsAdmin();
+        requestMap.put("adminList", adminList);
         requestMap.put("fsFarmnews",fsFarmnews);
         List<FsFarmnews> pageFarmnews = new ArrayList();
         Map map = pageUtil.getPaging(page, fsFarmnews, pageFarmnews);
@@ -94,7 +99,9 @@ public class FarmnewsController {
     }
 
     @RequestMapping(value = "admin-farmnews-addFarmnews-show", method = RequestMethod.GET)
-    public String addCarShow() {
+    public String addCarShow(Model model) {
+        List<FsCategory> categoryList = fsCategoryService.getAllFsCategory();
+        model.addAttribute("categoryList", categoryList);
         return "admin/farmnews_add";
     }
 
@@ -117,7 +124,7 @@ public class FarmnewsController {
 
             FsFarmnews farmnews = new FsFarmnews();
             farmnews.setUserId(Integer.valueOf(farmnewsUser));
-            farmnews.setCategoryId(Integer.valueOf(farmnewsType));
+            farmnews.setCategoryId(2);
             farmnews.setFarmnewsName(farmnewsName);
             farmnews.setFarmnewsTitle(farmnewsName);
             farmnews.setCreateTime(new Date());
@@ -172,7 +179,9 @@ public class FarmnewsController {
     @RequestMapping(value = "admin-farmnews-edit-show/{id}", method = RequestMethod.GET)
     public String adminEditFarmnewsShow(@PathVariable Integer id,Map<String, Object> requestMap) {
         FsFarmnews farmnews = fsFarmnewsService.selectByPrimaryKey(id);
-        requestMap.put("categoryName",fsCategoryService.getFsCategoryBySeq(farmnews.getCategoryId()).getCategoryName());
+        List<FsCategory> categoryList = fsCategoryService.getAllFsCategory();
+        requestMap.put("categoryList", categoryList);
+        //requestMap.put("categoryName",fsCategoryService.selectByPrimaryKey(farmnews.getCategoryId()).getCategoryName());
         requestMap.put("farmnewsUser",fsAdminService.getFsAdminById(farmnews.getUserId()).getAdminName());
         requestMap.put("farmnews",farmnews);
         return "admin/farmnews_edit";
@@ -205,7 +214,7 @@ public class FarmnewsController {
             Date effectiveTime = sf.parse(farmnewsTime);
 
             farmnews.setUserId(Integer.valueOf(farmnewsUser));
-            farmnews.setCategoryId(Integer.valueOf(farmnewsType));
+            farmnews.setCategoryId(2);
             farmnews.setFarmnewsName(farmnewsName);
             farmnews.setFarmnewsTitle(farmnewsName);
             farmnews.setCreateTime(new Date());

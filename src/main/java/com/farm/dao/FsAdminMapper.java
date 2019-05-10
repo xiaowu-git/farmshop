@@ -23,4 +23,5 @@ public interface FsAdminMapper {
 
     FsAdmin selectAdminByPhone(String adminPhone);
 
+    FsAdmin selectAdminByName(String adminName);
 }

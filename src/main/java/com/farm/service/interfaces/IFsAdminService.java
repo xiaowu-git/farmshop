@@ -38,4 +38,5 @@ public interface IFsAdminService {
     FsAdmin getAdminByPhone(String adminPhone);
 
 
+    FsAdmin getAdminByName(String username);
 }

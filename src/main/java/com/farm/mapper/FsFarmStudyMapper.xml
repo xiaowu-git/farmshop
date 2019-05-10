@@ -191,7 +191,7 @@
   <select id="selectAllFarmStudy" parameterType="com.farm.bean.FsFarmStudy" resultMap="BaseResultMap">
     SELECT
     <include refid="Base_Column_List" />
-    FROM fs_farmstudy WHERE is_deleted = '0' AND farmstudy_state = '2'
+    FROM fs_farmstudy order by effective_time desc
   </select>
 
 

@@ -1,8 +1,10 @@
 package com.farm.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.farm.bean.FsCategory;
 import com.farm.bean.FsProcurementProducts;
 import com.farm.bean.FsUser;
+import com.farm.service.interfaces.IFsCategoryService;
 import com.farm.service.interfaces.IFsUserService;
 import com.farm.service.interfaces.IFsProcurementProductsService;
 import com.farm.utils.FileUtil;
@@ -28,6 +30,8 @@ public class ProcurementProdController {
 
     @Autowired
     private IFsProcurementProductsService fsProcurementProductsService;
+    @Autowired
+    private IFsCategoryService categoryService;
 
     @Autowired
     private IFsUserService userService;
@@ -39,6 +43,8 @@ public class ProcurementProdController {
     public String getFsProcurementProducts(HttpServletRequest request, Map<String, Object> requestMap, @RequestParam("page") Integer page) {
         List<FsProcurementProducts> fsProcurementProducts  = fsProcurementProductsService.getFsProcurementProducts();
         requestMap.put("fsProcurementProducts", fsProcurementProducts);
+        List<FsCategory> categoryList = categoryService.getAllFsCategory();
+        requestMap.put("categoryList", categoryList);
 
         List<FsProcurementProducts> pageprocurementProds = new ArrayList();
         Map map = pageUtil.getPaging(page, fsProcurementProducts, pageprocurementProds);
@@ -81,6 +87,21 @@ public class ProcurementProdController {
         }
     }
 
+
+    @RequestMapping("/getBycategory")
+    public String getBycategoryId(HttpServletRequest request,Map<String, Object> requestMap,@RequestParam("page") Integer page,
+                                  @RequestParam("categoryId") Integer categoryId) {
+        List<FsCategory> categoryList = categoryService.getAllFsCategory();
+        requestMap.put("categoryList", categoryList);
+        List<FsProcurementProducts> procurementProductsList = fsProcurementProductsService.getBycategoryId(categoryId);
+        List<FsProcurementProducts> pageprocurementProds = new ArrayList();
+        Map map = pageUtil.getPaging(page, procurementProductsList, pageprocurementProds);
+        requestMap.put("categoryId", categoryId);
+        requestMap.put("pageMax", map.get("pageMax"));
+        requestMap.put("pagePoint", map.get("pagePoint"));
+        requestMap.put("pageprocurementProds", map.get("listPage"));
+        return "home/procurement";
+    }
 
     @RequestMapping("/user-wanttoprocurement-show")
     public String userWantToProcurementShow (HttpServletRequest request,Map<String, Object> requestMap){
@@ -245,13 +266,13 @@ public class ProcurementProdController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "admin-procurement-audit-execute/{id}", method = RequestMethod.GET)
-    public String auditProcurementExecute(@PathVariable Integer id) {
+    @RequestMapping(value = "admin-procurement-audit-execute/{id}/{state}", method = RequestMethod.GET)
+    public String auditProcurementExecute(@PathVariable("id") Integer id, @PathVariable("state") Integer state) {
         FsProcurementProducts fsProcurementProducts = fsProcurementProductsService.selectByPrimaryKey(id);
-        fsProcurementProducts.setProcurementProdState(2);
+        fsProcurementProducts.setProcurementProdState(state);
         fsProcurementProducts.setEffectiveTime(new Date());
         fsProcurementProductsService.updateByPrimaryKeySelective(fsProcurementProducts);
-        return "redirect:/admin-procurement-list-show?page=1&state=2";
+        return "redirect:/admin-procurement-list-show?page=1&state=" + state;
     }
 
     /**

@@ -106,6 +106,7 @@ public class UserController {
     @ResponseBody
     @RequestMapping(value = "/dologin" , method = RequestMethod.POST)
     public Object doLogin(@RequestParam("username") String username, @RequestParam("password") String password, HttpSession session) {
+
         JSONObject jsonObject = new JSONObject();
         MD5 md5 = new MD5();
         if(StringUtils.isBlank(username) || StringUtils.isBlank(password)){
@@ -113,14 +114,17 @@ public class UserController {
             jsonObject.put("success",false);
             return jsonObject;
         }
-
         try {
             FsUser user = userService.getUserByName(username);
             if(null == user){
                 jsonObject.put("msg","该用户未注册,请前去注册!");
                 jsonObject.put("success",false);
                 return jsonObject;
-            }else if(null != user && !md5.getMD5ofStr(password).equals(user.getUserPassword())){
+            }else if(user.getIsDeleted().equals("1")) {
+                jsonObject.put("msg","该用户已被禁用，请重新注册!");
+                jsonObject.put("success",false);
+                return jsonObject;
+            } else if(null != user && !md5.getMD5ofStr(password).equals(user.getUserPassword())){
                 jsonObject.put("msg","密码错误,请输入正确密码!");
                 jsonObject.put("success",false);
                 return jsonObject;

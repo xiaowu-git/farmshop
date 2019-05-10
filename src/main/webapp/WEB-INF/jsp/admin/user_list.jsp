@@ -44,7 +44,7 @@
                         <div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
                             <form action="${pageContext.request.contextPath }/admin-member-search-show" method="get">
                                 <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
-                                    <input type="text" class="am-form-field" name="userPhone" placeholder="请输入用户手机号">
+                                    <input type="text" class="am-form-field" name="username" placeholder="请输入用户名">
                                     <span class="am-input-group-btn">
             								<button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search"
                                                     type="submit"></button>
@@ -80,7 +80,14 @@
                                             <td class="am-text-middle">
                                                 <div class="tpl-table-black-operation">
                                                         <%--<a href="${pageContext.request.contextPath }/admin-user-resetcredit-execute/${users.userId }">信用重置</a>--%>
-                                                    <a href="admin-admin-removemember-execute/${users.userId}" class="tpl-table-black-operation-del">拉黑</a>
+                                                    <c:choose>
+                                                        <c:when test="${users.isDeleted == '1'}">
+                                                            <a href="admin-admin-removemember-execute/${users.userId}" class="tpl-table-black-operation-open">启用</a>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <a href="admin-admin-removemember-execute/${users.userId}" class="tpl-table-black-operation-del">禁用</a>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                 </div>
                                             </td>
                                         </tr>

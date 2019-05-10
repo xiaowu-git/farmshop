@@ -30,7 +30,7 @@
         <div class="login-banner-bg"><span></span><img src="${pageContext.request.contextPath }/resources/images/big.jpg" /></div>
         <div class="login-box">
 
-            <h3 class="title">登录商城</h3>
+            <h3 class="title">用户登录</h3>
 
             <div class="clear"></div>
 

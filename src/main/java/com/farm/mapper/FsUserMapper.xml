@@ -20,7 +20,7 @@
     select 
     <include refid="Base_Column_List" />
     from fs_user
-    where is_deleted = '0' and user_id = #{userId,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from fs_user
@@ -152,14 +152,19 @@
     SELECT
     <include refid="Base_Column_List"/>
     FROM fs_user
-    WHERE is_deleted = '0'
-    AND user_name = #{username,jdbcType=VARCHAR}
+    WHERE user_name = #{username,jdbcType=VARCHAR}
   </select>
   <!--3.查询所有用户信息-->
   <select id="selectAllFsUser" parameterType="com.farm.bean.FsUser" resultMap="BaseResultMap">
     SELECT
     <include refid="Base_Column_List" />
-    FROM fs_user WHERE is_deleted = '0'
+    FROM fs_user
+  </select>
+
+  <select id="selectUsersByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM fs_user WHERE user_name LIKE concat('%', #{username}, '%')
   </select>
 
   <!--计算用户数量-->

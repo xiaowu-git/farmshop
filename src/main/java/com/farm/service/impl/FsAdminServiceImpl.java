@@ -66,6 +66,7 @@ public class FsAdminServiceImpl implements IFsAdminService {
     @Override
     public int removeFsAdmin(Integer adminId) {
         FsAdmin fsAdmin = fsAdminMapper.selectByPrimaryKey(adminId);
+        fsAdmin.setIsDeleted("1");
         int updateNum = fsAdminMapper.updateByPrimaryKeySelective(fsAdmin);
         return updateNum;
     }
@@ -74,6 +75,11 @@ public class FsAdminServiceImpl implements IFsAdminService {
     public FsAdmin getAdminByPhone(String adminPhone) {
         FsAdmin fsAdmin = fsAdminMapper.selectAdminByPhone(adminPhone);
         return fsAdmin;
+    }
+
+    @Override
+    public FsAdmin getAdminByName(String username) {
+        return fsAdminMapper.selectAdminByName(username);
     }
 
 

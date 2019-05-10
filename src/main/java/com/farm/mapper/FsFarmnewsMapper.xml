@@ -191,7 +191,7 @@
   <select id="selectAllFsFarmnews" parameterType="com.farm.bean.FsFarmnews" resultMap="BaseResultMap">
     SELECT
     <include refid="Base_Column_List" />
-    FROM fs_farmnews WHERE is_deleted = '0' AND farmnews_state = '2'
+    FROM fs_farmnews WHERE is_deleted = '0' order by effective_time desc
   </select>
 
 

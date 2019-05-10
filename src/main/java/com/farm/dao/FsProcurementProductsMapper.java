@@ -24,4 +24,6 @@ public interface FsProcurementProductsMapper {
     List<FsProcurementProducts> getFsProcurementByState(Integer procurementProdState);
 
     List<FsProcurementProducts> getFsProcurementByUserId(Integer userId);
+
+    List<FsProcurementProducts> getBycategoryId(Integer categoryId);
 }

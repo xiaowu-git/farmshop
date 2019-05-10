@@ -48,9 +48,9 @@
                             <dl id="select2">
                                 <dt class="am-badge am-round">种类</dt>
                                 <div class="dd-conent">
-                                    <dd class="select-all selected"><a href="${pageContext.request.contextPath }/supply-list?page=1">全部</a></dd>
+                                    <dd class="select-all ${requestScope.categoryId == null ? 'selected' : ''}"><a href="${pageContext.request.contextPath }/supply-list?page=1">全部</a></dd>
                                     <c:forEach items="${requestScope.categoryList }" var="category">
-                                        <dd><a href="${pageContext.request.contextPath}/getbycatgoryId?categoryId=${category.categoryId}&page=1">${category.categoryName }</a></dd>
+                                        <dd><a class="${category.categoryId == requestScope.categoryId ? 'selected' : ''} " href="${pageContext.request.contextPath}/getbycatgoryId?categoryId=${category.categoryId}&page=1">${category.categoryName }</a></dd>
                                     </c:forEach>
                                     <%--<dd><a href="#">蔬菜</a></dd>--%>
                                     <%--<dd><a href="#">水果</a></dd>--%>
@@ -61,11 +61,11 @@
                     <div class="clear"></div>
                 </div>
                 <div class="search-content">
-                    <div class="sort">
-                        <li class="first"><a title="综合">综合排序</a></li>
-                        <li><a title="销量">销量排序</a></li>
-                        <li><a title="价格">价格优先</a></li>
-                    </div>
+                    <%--<div class="sort">--%>
+                        <%--<li class="first"><a title="综合">综合排序</a></li>--%>
+                        <%--<li><a title="销量">销量排序</a></li>--%>
+                        <%--<li><a title="价格">价格优先</a></li>--%>
+                    <%--</div>--%>
                     <div class="clear"></div>
                     <ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-4 boxes">
                         <c:forEach items="${requestScope.pageSupplyProds }" var="pageSupplyProd">

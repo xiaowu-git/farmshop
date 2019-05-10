@@ -4,16 +4,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <title>商品页面</title>
 
-    <link href="${pageContext.request.contextPath }/resources/assets/css/admfront.css" rel="stylesheet" type="text/css" />
-    <link href="${pageContext.request.contextPath }/resources/assets/css/amazeui.css" rel="stylesheet" type="text/css" />
-    <link href="${pageContext.request.contextPath }/resources/basic/css/demo.css" rel="stylesheet" type="text/css" />
-    <link type="text/css" href="${pageContext.request.contextPath }/resources/css/optstyle.css" rel="stylesheet" />
-    <link type="text/css" href="${pageContext.request.contextPath }/resources/css/style.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath }/resources/assets/css/admfront.css" rel="stylesheet"
+          type="text/css"/>
+    <link href="${pageContext.request.contextPath }/resources/assets/css/amazeui.css" rel="stylesheet" type="text/css"/>
+    <link href="${pageContext.request.contextPath }/resources/basic/css/demo.css" rel="stylesheet" type="text/css"/>
+    <link type="text/css" href="${pageContext.request.contextPath }/resources/css/optstyle.css" rel="stylesheet"/>
+    <link type="text/css" href="${pageContext.request.contextPath }/resources/css/style.css" rel="stylesheet"/>
     <link href="https://cdn.bootcss.com/toastr.js/2.1.4/toastr.min.css" rel="stylesheet">
 
     <%--<script type="text/javascript" src="${pageContext.request.contextPath }/resources/basic/js/jquery-1.7.min.js"></script>--%>
@@ -21,7 +23,8 @@
     <script type="text/javascript" src="${pageContext.request.contextPath }/resources/basic/js/quick_links.js"></script>
 
     <script type="text/javascript" src="${pageContext.request.contextPath }/resources/assets/js/amazeui.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery.imagezoom.min.js"></script>
+    <script type="text/javascript"
+            src="${pageContext.request.contextPath }/resources/js/jquery.imagezoom.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/jquery.flexslider.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/list.js"></script>
     <script src="https://cdn.bootcss.com/toastr.js/2.1.4/toastr.min.js"></script>
@@ -47,11 +50,12 @@
         <li class="am-active">商品详情</li>
     </ol>
     <script type="text/javascript">
-        $(function() {});
-        $(window).load(function() {
+        $(function () {
+        });
+        $(window).load(function () {
             $('.flexslider').flexslider({
                 animation: "slide",
-                start: function(slider) {
+                start: function (slider) {
                     $('body').removeClass('loading');
                 }
             });
@@ -62,7 +66,8 @@
             <div class="flexslider">
                 <ul class="slides">
                     <li>
-                        <img src="${pageContext.request.contextPath }/${supplyProdShow.supplyProdPicture }" title="pic" />
+                        <img src="${pageContext.request.contextPath }/${supplyProdShow.supplyProdPicture }"
+                             title="pic"/>
                     </li>
                     <%--<li>
                         <img src="${pageContext.request.contextPath }/resources/images/02.jpg" />
@@ -82,18 +87,22 @@
 
             <div class="box">
                 <script type="text/javascript">
-                    $(document).ready(function() {
+                   /* $(document).ready(function () {
                         $(".jqzoom").imagezoom();
-                        $("#thumblist li a").click(function() {
+                        $("#thumblist li a").click(function () {
                             $(this).parents("li").addClass("tb-selected").siblings().removeClass("tb-selected");
                             $(".jqzoom").attr('src', $(this).find("img").attr("mid"));
                             $(".jqzoom").attr('rel', $(this).find("img").attr("big"));
                         });
-                    });
+                    });*/
                 </script>
 
                 <div class="tb-booth tb-pic tb-s310">
-                    <a href="${pageContext.request.contextPath }/${supplyProdShow.supplyProdPicture }"><img src="${pageContext.request.contextPath }/${supplyProdShow.supplyProdPicture }" alt="细节展示放大镜特效" rel="${pageContext.request.contextPath }/${supplyProdShow.supplyProdPicture }" class="jqzoom" /></a>
+                    <a href="${pageContext.request.contextPath }/${supplyProdShow.supplyProdPicture }"><img
+                            src="${pageContext.request.contextPath }/${supplyProdShow.supplyProdPicture }"
+                            alt="细节展示放大镜特效"
+                            rel="${pageContext.request.contextPath }/${supplyProdShow.supplyProdPicture }"
+                            class="jqzoom"/></a>
                 </div>
                 <ul class="tb-thumb" id="thumblist">
                     <%--<li class="tb-selected">
@@ -121,13 +130,13 @@
                 <!--价格-->
                 <div class="tb-detail-price">
                     <li class="price iteminfo_price">
-                        <dt>促销价</dt>
-                        <dd><em>¥</em><b class="sys_item_price">${supplyProdShow.supplyProdPrice } /斤</b>  </dd>
+                        <dt>价格</dt>
+                        <dd><em>¥</em><b class="sys_item_price">${supplyProdShow.supplyProdPrice } /斤</b></dd>
                     </li>
-                    <li class="price iteminfo_mktprice">
-                        <dt>原价</dt>
-                        <dd><em>¥</em><b class="sys_item_mktprice">98.00</b></dd>
-                    </li>
+                    <%--<li class="price iteminfo_mktprice">--%>
+                        <%--<dt>原价</dt>--%>
+                        <%--<dd><em>¥</em><b class="sys_item_mktprice">98.00</b></dd>--%>
+                    <%--</li>--%>
                     <div class="clear"></div>
                 </div>
 
@@ -162,7 +171,8 @@
                         <div class="tm-indcon"><span class="tm-label">月销量</span><span class="tm-count">1015</span></div>
                     </li>
                     <li class="tm-ind-item tm-ind-sumCount canClick">
-                        <div class="tm-indcon"><span class="tm-label">累计销量</span><span class="tm-count">6015</span></div>
+                        <div class="tm-indcon"><span class="tm-label">累计销量</span><span class="tm-count">6015</span>
+                        </div>
                     </li>
                     <li class="tm-ind-item tm-ind-reviewCount canClick tm-line3">
                         <div class="tm-indcon"><span class="tm-label">累计评价</span><span class="tm-count">640</span></div>
@@ -172,7 +182,9 @@
 
                 <!--各种规格-->
                 <dl class="iteminfo_parameter sys_item_specpara">
-                    <dt class="theme-login"><div class="cart-title">可选规格<span class="am-icon-angle-right"></span></div></dt>
+                    <dt class="theme-login">
+                        <div class="cart-title">可选规格<span class="am-icon-angle-right"></span></div>
+                    </dt>
                     <dd>
                         <!--操作页面-->
 
@@ -205,10 +217,11 @@
                                         <div class="theme-options">
                                             <div class="cart-title number">数量</div>
                     <dd>
-                        <input id="min" class="am-btn am-btn-default" name="" type="button" value="-" />
-                        <input id="text_box" name="supplyProdAmount" type="text" value="1" style="width:30px;" />
-                        <input id="add" class="am-btn am-btn-default" name="" type="button" value="+" />
-                        <span id="Stock" class="tb-hidden">库存<span class="stock" id="pc_stock">${supplyProdShow.supplyProdNum }</span>斤</span>
+                        <input id="min" class="am-btn am-btn-default" name="" type="button" value="-"/>
+                        <input id="text_box" name="supplyProdAmount" type="text" value="1" style="width:30px;"/>
+                        <input id="add" class="am-btn am-btn-default" name="" type="button" value="+"/>
+                        <span id="Stock" class="tb-hidden">库存<span class="stock"
+                                                                   id="pc_stock">${supplyProdShow.supplyProdNum }</span>斤</span>
                     </dd>
 
 
@@ -222,11 +235,12 @@
         </div>
         <div class="theme-signin-right">
             <div class="img-info">
-                <img src="${pageContext.request.contextPath }/resources/images/songzi.jpg" />
+                <img src="${pageContext.request.contextPath }/resources/images/songzi.jpg"/>
             </div>
             <div class="text-info">
                 <span class="J_Price price-now">¥${supplyProdShow.supplyProdPrice } /斤</span>
-                <span id="" class="tb-hidden">库存<span class="stock" id="app_stock">${supplyProdShow.supplyProdNum }</span>件</span>
+                <span id="" class="tb-hidden">库存<span class="stock"
+                                                      id="app_stock">${supplyProdShow.supplyProdNum }</span>件</span>
             </div>
         </div>
 
@@ -297,7 +311,8 @@
 
                 <li class="first">
                     <div class="p-img">
-                        <a  href="#"> <img class="" src="${pageContext.request.contextPath }/resources/images/browse1.jpg"> </a>
+                        <a href="#"> <img class=""
+                                          src="${pageContext.request.contextPath }/resources/images/browse1.jpg"> </a>
                     </div>
                     <div class="p-name"><a href="#">
                         【开口松子】零食坚果特产炒货东北红松子原味
@@ -342,7 +357,7 @@
                             <li title="">保质期:&nbsp;180天</li>
                             <li title="">产品标准号:&nbsp;GB/T 22165</li>
                             <li title="">生产许可证编号：&nbsp;QS4201 1801 0226</li>
-                            <li title="">储存方法：&nbsp;请放置于常温、阴凉、通风、干燥处保存 </li>
+                            <li title="">储存方法：&nbsp;请放置于常温、阴凉、通风、干燥处保存</li>
                             <li title="">食用方法：&nbsp;${supplyProdShow.supplyProdInfo }</li>
                         </ul>
                         <div class="clear"></div>
@@ -356,9 +371,9 @@
                             <p>
                                 ${supplyProdShow.supplyProdInfo } <br>
                             </p>
-                            <img src="${pageContext.request.contextPath }/${supplyProdShow.supplyProdPicture }" />
-                            <img src="${pageContext.request.contextPath }/${supplyProdShow.supplyProdPicture }" />
-                            <img src="${pageContext.request.contextPath }/resources/images/tw7.jpg" />
+                            <img src="${pageContext.request.contextPath }/${supplyProdShow.supplyProdPicture }"/>
+                            <img src="${pageContext.request.contextPath }/${supplyProdShow.supplyProdPicture }"/>
+                            <img src="${pageContext.request.contextPath }/resources/images/tw7.jpg"/>
                         </div>
                     </div>
                     <div class="clear"></div>
@@ -382,34 +397,34 @@
 
 <script type="text/javascript">
     <!--点击立即购买按钮之后跳转支付页面操作-->
-    $("#LikBuy").click(function(){
+    $("#LikBuy").click(function () {
         var supplyProdId = $('input[name="supplyProdId"]').val();
         var supplyProdAmount = $('input[name="supplyProdAmount"]').val();
-        if(null == supplyProdAmount || "" == supplyProdAmount){
+        if (null == supplyProdAmount || "" == supplyProdAmount) {
             toastr.options = {positionClass: "toast-top-center"};
             toastr["error"]("请选择商品数量！");
             return false;
         }
         $.ajax({
-            url:"${pageContext.request.contextPath }/user-orderpay-toshow",
-            type:'post',
-            dataType:'json',
-            data:{
-                "supplyProdId":supplyProdId,
-                "supplyProdAmount":supplyProdAmount
+            url: "${pageContext.request.contextPath }/user-orderpay-toshow",
+            type: 'post',
+            dataType: 'json',
+            data: {
+                "supplyProdId": supplyProdId,
+                "supplyProdAmount": supplyProdAmount
             },
-            success:function(data){
+            success: function (data) {
                 console.log(data);
-                if(data.success){
+                if (data.success) {
                     toastr.options = {positionClass: "toast-top-center"};
                     toastr["success"]("请仔细确认订单信息");
-                    window.location.href = "${pageContext.request.contextPath }/user-orderpay-show?supplyProdId="+data.supplyProdId+"&supplyProdAmount="+data.supplyProdAmount;
-                }else{
+                    window.location.href = "${pageContext.request.contextPath }/user-orderpay-show?supplyProdId=" + data.supplyProdId + "&supplyProdAmount=" + data.supplyProdAmount;
+                } else {
                     toastr.options = {positionClass: "toast-top-center"};
                     toastr["error"](data.msg ? data.msg : "下单失败");
                 }
             }
-            ,error:function(e){
+            , error: function (e) {
                 toastr["error"]("连接服务器超时，请稍后重试");
             }
         });

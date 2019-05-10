@@ -116,16 +116,25 @@
     SELECT
     <include refid="Base_Column_List" />
     FROM fs_admin WHERE is_deleted = '0'
-    AND admin_name LIKE "%"#{name,jdbcType=VARCHAR}"%"
+    AND admin_name LIKE CONCAT('%',#{name},'%')
   </select>
 
-  <!--通过管理员名字查询-->
+  <!--通过管理员手机号查询-->
   <select id="selectAdminByPhone" parameterType="java.lang.String" resultMap="BaseResultMap">
     SELECT
     <include refid="Base_Column_List" />
     FROM fs_admin WHERE is_deleted = '0'
     AND admin_phone = #{adminPhone,jdbcType=VARCHAR}
   </select>
+
+  <!--通过管理员名字查询-->
+  <select id="selectAdminByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM fs_admin WHERE is_deleted = '0'
+    AND admin_name = #{adminName,jdbcType=VARCHAR}
+  </select>
+
 
 
 </mapper>

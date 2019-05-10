@@ -1618,6 +1618,14 @@ ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content 
     background: #f35842;
     color: #fff;
 }
+.theme-black .tpl-table-black-operation a.tpl-table-black-operation-open {
+    border: 1px solid #1ef336;
+    color: #1ef336;
+}
+.theme-black .tpl-table-black-operation a.tpl-table-black-operation-open:hover {
+    background: #1ef336;
+    color: #fff;
+}
 .theme-black .am-table-bordered {
     border: 1px solid #666d70;
 }

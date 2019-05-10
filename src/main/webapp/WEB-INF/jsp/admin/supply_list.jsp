@@ -83,19 +83,22 @@
                                         <td class="am-text-middle">
                                             <div class="tpl-table-black-operation">
                                                 <c:if test="${pageSupplyProd.supplyProdState == 1}">
-                                                <a href="${pageContext.request.contextPath }/admin-supply-audit-execute/${pageSupplyProd.supplyProdId}">
-                                                    <i class="am-icon-pencil"></i> 审批
+                                                <a href="${pageContext.request.contextPath }/admin-supply-audit-execute/${pageSupplyProd.supplyProdId}/2">
+                                                    <i class="am-icon-pencil"></i> 审核通过
+                                                    </a>
+                                                <a href="${pageContext.request.contextPath }/admin-supply-audit-execute/${pageSupplyProd.supplyProdId}/3">
+                                                    <i class="am-icon-pencil"></i> 审核不通过
                                                 </a>
                                                 </c:if>
 
                                                 <c:if test="${pageSupplyProd.supplyProdState == 2}">
-                                                <a href="${pageContext.request.contextPath }/admin-supply-stop-execute/${pageSupplyProd.supplyProdId}" class="tpl-table-black-operation-del">
-                                                    <i class="am-icon-trash"></i> 下架
+                                                <a href="javascript:void(0);" class="tpl-table-black-operation-open">
+                                                    <i class="am-icon-check-circle"></i> 已通过
                                                 </a>
                                                 </c:if>
                                                 <c:if test="${pageSupplyProd.supplyProdState == 3}">
-                                                    <a href="${pageContext.request.contextPath }/admin-supply-remove-execute/${pageSupplyProd.supplyProdId}" class="tpl-table-black-operation-del">
-                                                        <i class="am-icon-trash"></i> 删除
+                                                    <a href="javascript:void(0);" class="tpl-table-black-operation-del">
+                                                        <i class="am-icon-times-circle"></i> 不通过
                                                     </a>
                                                 </c:if>
                                             </div>

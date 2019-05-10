@@ -45,8 +45,8 @@
                                 <div class="am-form-group">
                                     <label for="farmnews-time" class="am-u-sm-3 am-form-label">发布时间 <span class="tpl-form-line-small-title">Time</span></label>
                                     <div class="am-u-sm-9">
-                                        <input  id="farmnews-time" type="text" class="am-form-field tpl-form-no-bg" placeholder="发布时间" data-am-datepicker="" readonly=""
-                                                value="<fmt:formatDate value="${farmnews.effectiveTime}" type="both"/>">
+                                        <input  id="farmnews-time" type="text" class="am-form-field tpl-form-no-bg" placeholder="发布时间" data-am-datepicker="{format: 'yyyy-mm-dd'}" readonly=""
+                                                value="<fmt:formatDate pattern="yyyy-MM-dd" value="${farmnews.effectiveTime}" type="both"/>">
                                         <small>发布时间为必填</small>
                                     </div>
                                 </div>
@@ -59,15 +59,18 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="am-form-group">
+                               <%-- <div class="am-form-group">
                                     <label for="farmnews-type" class="am-u-sm-3 am-form-label">添加分类 <span class="tpl-form-line-small-title">Type</span></label>
                                     <div class="am-u-sm-9">
-                                        <%--<input type="text" id="news-type" placeholder="请添加分类用点号隔开">--%>
+                                        &lt;%&ndash;<input type="text" id="news-type" placeholder="请添加分类用点号隔开">&ndash;%&gt;
                                         <select id="farmnews-type" data-am-selected="{maxHeight: 300}" style="display: none;">
-                                            <option value='${farmnews.categoryId}'>${categoryName}</option>
+                                            <c:forEach items="${categoryList}" var="category">
+                                                <option value='${farmnews.categoryId}' ${farmnews.categoryId == category.categoryId ? 'selected' : ''}>${category.categoryName}</option>
+                                            </c:forEach>
+
                                         </select>
                                     </div>
-                                </div>
+                                </div>--%>
 
                                 <div class="am-form-group">
                                     <label for="farmnews-picture" class="am-u-sm-3 am-form-label">资讯图片 <span class="tpl-form-line-small-title">Images</span></label>
@@ -222,17 +225,17 @@
             toastr["error"]("请选择行业资讯发布作者！");
             return false;
         }
-        if(null == farmnewsType || 0 == farmnewsType){
+        /*if(null == farmnewsType || 0 == farmnewsType){
             toastr.options = {positionClass: "toast-top-right"};
             toastr["error"]("请选择行业资讯类型！");
             return false;
-        }
+        }*/
         if(null == farmnewsName || "" == farmnewsName){
             toastr.options = {positionClass: "toast-top-right"};
             toastr["error"]("请填写行业资讯的标题！");
             return false;
         }
-        if(farmnewsName.length > 10){
+        if(farmnewsName.length > 30){
             toastr.options = {positionClass: "toast-top-right"};
             toastr.warning("请您正确填写行业资讯的标题!");
             return false;
@@ -247,7 +250,7 @@
             toastr.warning("请您正确填写行业资讯的具体内容!");
             return false;
         }
-        if(farmnewsInfo.length > 1000){
+        if(farmnewsInfo.length > 5000){
             toastr.options = {positionClass: "toast-top-right"};
             toastr.warning("您填写行业资讯的具体内容已经超出字数!");
             return false;

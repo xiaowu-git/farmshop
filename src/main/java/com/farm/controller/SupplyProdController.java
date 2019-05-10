@@ -96,7 +96,7 @@ public class SupplyProdController {
 
         List<FsSupplyProducts> pageSupplyProds = new ArrayList();
         Map map = pageUtil.getPaging(page, fsSupplyProducts, pageSupplyProds);
-
+        requestMap.put("categoryId", categoryId);
         requestMap.put("pageMax", map.get("pageMax"));
         requestMap.put("pagePoint", map.get("pagePoint"));
         requestMap.put("pageSupplyProds", map.get("listPage"));
@@ -262,8 +262,14 @@ public class SupplyProdController {
 
     @RequestMapping(value = "admin-supply-search-show", method = RequestMethod.GET)
     public String searchSupplyShow(Map<String, Object> requestMap, @RequestParam("supplyProdName") String supplyProdName) {
+
         requestMap.put("nav", "supply");
         if(StringUtils.isNotBlank(supplyProdName)){
+            try {
+                supplyProdName = new String(supplyProdName.getBytes("ISO-8859-1"), "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
             ArrayList<FsSupplyProducts> fsSupplyProducts = (ArrayList<FsSupplyProducts>) fsSupplyProductsService.getFsSupplyProductsByName(supplyProdName);
             requestMap.put("pageSupplyProds", fsSupplyProducts);
             return "admin/supply_list";
@@ -293,13 +299,13 @@ public class SupplyProdController {
      * @param id
      * @return
      */
-    @RequestMapping(value = "admin-supply-audit-execute/{id}", method = RequestMethod.GET)
-    public String auditSupplyExecute(@PathVariable Integer id) {
+    @RequestMapping(value = "admin-supply-audit-execute/{id}/{state}", method = RequestMethod.GET)
+    public String auditSupplyExecute(@PathVariable("id") Integer id, @PathVariable("state") Integer state) {
         FsSupplyProducts fsSupplyProducts = fsSupplyProductsService.selectByPrimaryKey(id);
-        fsSupplyProducts.setSupplyProdState(2);
+        fsSupplyProducts.setSupplyProdState(state);
         fsSupplyProducts.setEffectiveTime(new Date());
         fsSupplyProductsService.updateByPrimaryKeySelective(fsSupplyProducts);
-        return "redirect:/admin-supply-list-show?page=1&state=2";
+        return "redirect:/admin-supply-list-show?page=1&state=" + state;
     }
 
     /**

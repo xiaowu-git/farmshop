@@ -80,9 +80,21 @@
                                             <img src="${pageContext.request.contextPath }/${farmstudy.farmstudyPicture}" class="tpl-table-line-img" alt="">
                                         </td>
                                         <td class="am-text-middle">${farmstudy.farmstudyName}</td>
-                                        <td class="am-text-middle">${farmstudy.adminId}</td>
-                                        <td class="am-text-middle">${farmstudy.studylistId}</td>
-                                        <td class="am-text-middle"><fmt:formatDate value="${farmstudy.effectiveTime }" type="both"/></td>
+                                        <td class="am-text-middle">
+                                            <c:forEach items="${adminList}" var="admin">
+                                                <c:if test="${admin.adminId == farmstudy.adminId}">
+                                                    ${admin.adminName}
+                                                </c:if>
+                                            </c:forEach>
+                                        </td>
+                                        <td class="am-text-middle">
+                                            <c:forEach items="${studylist}" var="study">
+                                                <c:if test="${study.studylistId == farmstudy.studylistId}">
+                                                    ${study.studylistName}
+                                                </c:if>
+                                            </c:forEach>
+                                        </td>
+                                        <td class="am-text-middle"><fmt:formatDate value="${farmstudy.effectiveTime }" pattern="yyyy-MM-dd" type="both"/></td>
                                         <td class="am-text-middle">
                                             <div class="tpl-table-black-operation">
                                                 <a href="${pageContext.request.contextPath }/admin-farmstudy-edit-show/${farmstudy.farmstudyId}">

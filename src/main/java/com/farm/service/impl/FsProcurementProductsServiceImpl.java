@@ -96,4 +96,9 @@ public class FsProcurementProductsServiceImpl implements IFsProcurementProductsS
         return fsProcurementProductsMapper.getFsProcurementByUserId(userId);
     }
 
+    @Override
+    public List<FsProcurementProducts> getBycategoryId(Integer categoryId) {
+        return fsProcurementProductsMapper.getBycategoryId(categoryId);
+    }
+
 }

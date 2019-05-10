@@ -79,10 +79,15 @@
                                         <td>
                                             <img src="${pageContext.request.contextPath }/${farmnews.farmnewsPicture}" class="tpl-table-line-img" alt="">
                                         </td>
+
                                         <td class="am-text-middle">${farmnews.farmnewsName}</td>
-                                        <td class="am-text-middle">${farmnews.userId}</td>
-                                        <td class="am-text-middle">${farmnews.categoryId}</td>
-                                        <td class="am-text-middle"><fmt:formatDate value="${farmnews.effectiveTime }" type="both"/></td>
+                                        <c:forEach items="${adminList}" var="admin">
+                                            <c:if test="${admin.adminId == farmnews.userId}">
+                                                <td class="am-text-middle">${admin.adminName}</td>
+                                            </c:if>
+                                        </c:forEach>
+                                        <%--<td class="am-text-middle">${farmnews.categoryId}</td>--%>
+                                        <td class="am-text-middle"><fmt:formatDate value="${farmnews.effectiveTime }" pattern="yyyy-MM-dd" type="both"/></td>
                                         <td class="am-text-middle">
                                             <div class="tpl-table-black-operation">
                                                 <a href="${pageContext.request.contextPath }/admin-farmnews-edit-show/${farmnews.farmnewsId}">

@@ -18,11 +18,11 @@
                 <p style="font-size:24px; color: #cfcfcf; line-height: 2.4em;">助农电商平台后台管理</p>
             </div>
             <c:if test="${requestScope.adminLoginError == 1 }">
-                <span style="color:#f44336;">用户手机号或密码输入有误!请检查后重新输入</span>
+                <span style="color:#f44336;">用户名或密码输入有误!请检查后重新输入</span>
             </c:if>
-            <form autocomplete="off" class="am-form tpl-form-line-form" action="index-login-execute" method="post">
+            <form autocomplete="off" class="am-form tpl-form-line-form" action="${pageContext.request.contextPath }/index-login-execute" method="post">
                 <div class="am-form-group">
-                    <input type="text" class="tpl-form-input" id="user-phone" placeholder="请输入管理员手机号" name="phone">
+                    <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入管理员名字" name="username">
                 </div>
                 <div class="am-form-group">
                     <input type="password" class="tpl-form-input" id="user-password" placeholder="请输入密码" name="password">

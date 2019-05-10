@@ -41,21 +41,23 @@
                 <div class="theme-popover">
                     <ul class="select">
                         <div class="clear"></div>
-                        <li class="select-result">
+                       <%-- <li class="select-result">
                             <dl>
                                 <dt>已选</dt>
                                 <dd class="select-no"></dd>
                                 <p class="eliminateCriteria">清除</p>
                             </dl>
-                        </li>
+                        </li>--%>
                         <div class="clear"></div>
                         <li class="select-list">
                             <dl id="select2">
                                 <dt class="am-badge am-round">种类</dt>
                                 <div class="dd-conent">
-                                    <dd class="select-all selected"><a href="#">全部</a></dd>
-                                    <dd><a href="#">蔬菜</a></dd>
-                                    <dd><a href="#">水果</a></dd>
+                                    <dd class="select-all ${requestScope.categoryId == null ? 'selected' : ''}"><a href="${pageContext.request.contextPath }/procurement-list?page=1">全部</a></dd>
+                                    <c:forEach items="${requestScope.categoryList}" var="category">
+                                        <dd><a class="${category.categoryId == requestScope.categoryId ? 'selected' : ''}" href="${pageContext.request.contextPath }/getBycategory?page=1&categoryId=${category.categoryId}">${category.categoryName}</a></dd>
+                                    </c:forEach>
+                                    <%--<dd><a href="#">水果</a></dd>--%>
                                 </div>
                             </dl>
                         </li>
@@ -66,11 +68,11 @@
 
 
                 <div class="search-content">
-                    <div class="sort">
-                        <li class="first"><a title="综合">综合排序</a></li>
-                        <li><a title="销量">销量排序</a></li>
-                        <li><a title="价格">价格优先</a></li>
-                    </div>
+                    <%--<div class="sort">--%>
+                        <%--<li class="first"><a title="综合">综合排序</a></li>--%>
+                        <%--<li><a title="销量">销量排序</a></li>--%>
+                        <%--<li><a title="价格">价格优先</a></li>--%>
+                    <%--</div>--%>
                     <div class="clear"></div>
 
                     <!--交易时间	-->

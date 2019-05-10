@@ -1,6 +1,7 @@
 package com.farm.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.farm.bean.FsAdmin;
 import com.farm.service.interfaces.IFsAdminService;
 import com.farm.service.interfaces.IFsCategoryService;
 import com.farm.service.interfaces.IFsFarmStudyService;
@@ -81,8 +82,15 @@ public class FarmStudyController {
     @RequestMapping(value = "/admin-farmstudy-list-show",method = RequestMethod.GET)
     public String adminFsFarmStudyList (HttpServletRequest request,Map<String, Object> requestMap,@RequestParam("page") Integer page){
         requestMap.put("nav", "farmstudy");
+        List<FsAdmin> adminList = fsAdminService.getAllFsAdmin();
+        requestMap.put("adminList", adminList);
+
         List<FsFarmStudy> fsFarmStudies = farmStudyService.getAllFarmStudy();
         requestMap.put("fsFarmStudies",fsFarmStudies);
+
+        List<FsStudylist> studylist = studyListService.getAllFsStudylist();
+        requestMap.put("studylist", studylist);
+
         List<FsFarmStudy> pageFarmStudies = new ArrayList();
         Map map = pageUtil.getPaging(page, fsFarmStudies, pageFarmStudies);
 
@@ -185,7 +193,7 @@ public class FarmStudyController {
     @RequestMapping(value = "admin-farmstudy-edit-show/{id}", method = RequestMethod.GET)
     public String adminEditFarmstudyShow(@PathVariable Integer id,Map<String, Object> requestMap) {
         FsFarmStudy farmStudy = farmStudyService.getFarmStudyById(id);
-        requestMap.put("listName",studyListService.getStudyListBySeq(farmStudy.getStudylistId()).getStudylistName());
+        requestMap.put("listName",studyListService.getStudyListById(farmStudy.getStudylistId()).getStudylistName());
         requestMap.put("farmStudyUser",fsAdminService.getFsAdminById(farmStudy.getAdminId()).getAdminName());
         requestMap.put("farmStudy",farmStudy);
         return "admin/farmstudy_edit";
